@@ -21,6 +21,8 @@ body,
 
 html {
   scroll-behavior: smooth;
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
 }
 
 body {
@@ -31,6 +33,45 @@ body {
   color: #545454;
   font-weight: 400;
   line-height: 1.6;
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
+}
+
+/* ===== ANIMATION PERFORMANCE OPTIMIZATIONS ===== */
+
+/* GPU acceleration for animated elements */
+.blur-3xl,
+[class*="animate"],
+[class*="motion"] {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile performance: simplify heavy animations */
+@media (max-width: 768px) {
+  /* Reduce blur intensity on mobile for better performance */
+  .blur-3xl {
+    filter: blur(40px) !important;
+  }
+
+  /* Hide decorative floating particles on mobile */
+  .absolute.rounded-full[class*="bg-"][style*="width: 6px"],
+  .absolute.rounded-full[class*="bg-"][style*="width: 8px"],
+  .absolute.rounded-full[class*="bg-"][style*="width: 10px"] {
+    display: none;
+  }
 }
 
 /* Headings use Cormorant Garamond */
