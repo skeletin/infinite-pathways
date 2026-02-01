@@ -24,7 +24,7 @@ const Contact = () => {
     }
 
     return (
-        <div className="min-h-screen pt-20">
+        <div className="min-h-screen">
             {/* Hero Section */}
             <section className="py-20 relative overflow-hidden">
                 {/* Gradient background */}

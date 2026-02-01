@@ -1,6 +1,6 @@
 import { Link } from "react-router"
 import { motion } from "motion/react"
-import HealingSection from "../../3d/HealingSection"
+import { FaSpa } from "react-icons/fa"
 
 // Floating particle component
 const FloatingParticle = ({ delay, size, left, top, duration }: { delay: number; size: number; left: string; top: string; duration: number }) => (
@@ -249,9 +249,191 @@ const Home = () => {
                 </motion.div>
             </section>
 
-            {/* Intro Section - 3D Canvas with integrated HTML */}
-            <section className="bg-white">
-                <HealingSection className="w-full h-[600px]" />
+            {/* Intro Section */}
+            <section className="py-24 bg-white relative">
+                <div className="max-w-6xl mx-auto px-6 md:px-12">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                        {/* Text content */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            {/* Animated accent */}
+                            <motion.div
+                                className="flex items-center gap-3 mb-6"
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true }}
+                            >
+                                <motion.span
+                                    className="h-px w-8 bg-gradient-to-r from-[#a8b87c] to-[#687b0a]"
+                                    initial={{ width: 0 }}
+                                    whileInView={{ width: 32 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.8, delay: 0.5 }}
+                                />
+                                <span className="text-sm uppercase tracking-[0.2em] text-[#687b0a] font-medium">
+                                    My Philosophy
+                                </span>
+                            </motion.div>
+
+                            {/* Animated title with gradient */}
+                            <motion.h2
+                                className="text-4xl md:text-5xl font-light mb-8 leading-[1.1]"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                            >
+                                <span className="block text-[#3d4a28]">Healing isn't</span>
+                                <span
+                                    className="block bg-clip-text text-transparent"
+                                    style={{ backgroundImage: 'linear-gradient(135deg, #687b0a 0%, #a8b87c 50%, #4a5c14 100%)' }}
+                                >
+                                    linear
+                                </span>
+                            </motion.h2>
+
+                            {/* Animated decorative element */}
+                            <motion.div
+                                className="w-24 h-1 mb-8 rounded-full overflow-hidden"
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true }}
+                            >
+                                <motion.div
+                                    className="h-full w-full"
+                                    style={{ background: 'linear-gradient(90deg, #687b0a, #a8b87c, #d4e4b8)' }}
+                                    animate={{ x: ['-100%', '100%'] }}
+                                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                                />
+                            </motion.div>
+
+                            <motion.p
+                                className="text-lg text-[#545454] leading-relaxed mb-5"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.3 }}
+                            >
+                                No two paths look the same—and that's exactly how it should be.
+                                I believe in creating a space where you feel{' '}
+                                <span className="text-[#3d4a28] font-medium">truly seen</span> and{' '}
+                                <span className="text-[#3d4a28] font-medium">heard</span>,
+                                without judgment or expectation.
+                            </motion.p>
+
+                            <motion.p
+                                className="text-lg text-[#545454] leading-relaxed mb-8"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.4 }}
+                            >
+                                As a Licensed Clinical Social Worker, I bring both professional
+                                expertise and genuine warmth to our work together. Whether you're
+                                facing anxiety, navigating life transitions, or simply seeking
+                                a place to process—<span className="italic text-[#687b0a]">you don't have to do it alone.</span>
+                            </motion.p>
+
+                            {/* Animated CTA button */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.5 }}
+                            >
+                                <Link to="/about">
+                                    <motion.div
+                                        className="group inline-flex items-center gap-3 px-6 py-3 rounded-full relative overflow-hidden"
+                                        style={{ background: 'linear-gradient(135deg, #687b0a 0%, #7a8f1a 100%)' }}
+                                        whileHover={{ scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
+                                    >
+                                        <motion.div
+                                            className="absolute inset-0 opacity-0 group-hover:opacity-100"
+                                            style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)' }}
+                                            animate={{ x: ['-100%', '200%'] }}
+                                            transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1 }}
+                                        />
+                                        <span className="relative text-white font-medium">
+                                            More about my approach
+                                        </span>
+                                        <motion.svg
+                                            className="w-5 h-5 text-white relative"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            animate={{ x: [0, 5, 0] }}
+                                            transition={{ duration: 1.5, repeat: Infinity }}
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="17 8l4 4m0 0l-4 4m4-4H3" />
+                                        </motion.svg>
+                                    </motion.div>
+                                </Link>
+                            </motion.div>
+                        </motion.div>
+
+                        {/* Visual element (replacing 3D lotus) */}
+                        <motion.div
+                            className="relative flex items-center justify-center"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.3 }}
+                        >
+                            {/* Decorative circles */}
+                            <motion.div
+                                className="absolute w-72 h-72 rounded-full border-2 border-[#a8b87c]/20"
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                            />
+                            <motion.div
+                                className="absolute w-56 h-56 rounded-full border border-[#687b0a]/15"
+                                animate={{ rotate: -360 }}
+                                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                            />
+                            <motion.div
+                                className="absolute w-40 h-40 rounded-full border border-dashed border-[#d4e4b8]/40"
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                            />
+
+                            {/* Pulsing glow */}
+                            <motion.div
+                                className="absolute w-48 h-48 rounded-full"
+                                style={{ background: 'radial-gradient(circle, rgba(168, 184, 124, 0.3) 0%, transparent 70%)' }}
+                                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                            />
+
+                            {/* Center icon */}
+                            <motion.div
+                                className="relative w-32 h-32 rounded-full bg-gradient-to-br from-[#687b0a] to-[#a8b87c] flex items-center justify-center shadow-2xl"
+                                whileHover={{ scale: 1.05 }}
+                                animate={{ y: [0, -10, 0] }}
+                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                            >
+                                <FaSpa className="w-16 h-16 text-white" />
+                            </motion.div>
+
+                            {/* Floating dots */}
+                            <motion.div
+                                className="absolute top-10 right-10 w-3 h-3 rounded-full bg-[#a8b87c]"
+                                animate={{ y: [0, -20, 0], opacity: [0.4, 0.8, 0.4] }}
+                                transition={{ duration: 3, repeat: Infinity, delay: 0 }}
+                            />
+                            <motion.div
+                                className="absolute bottom-16 left-8 w-2 h-2 rounded-full bg-[#687b0a]"
+                                animate={{ y: [0, -15, 0], opacity: [0.3, 0.7, 0.3] }}
+                                transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+                            />
+                        </motion.div>
+                    </div>
+                </div>
+
             </section>
 
             {/* Values Section */}
