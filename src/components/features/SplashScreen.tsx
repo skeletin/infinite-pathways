@@ -1,5 +1,6 @@
 import { motion } from "motion/react"
-import logo from "../../../public/images/infifnite-pathways-logo.svg"
+
+const logo = "/images/infifnite-pathways-logo.svg"
 
 const SplashScreen = () => {
     return (

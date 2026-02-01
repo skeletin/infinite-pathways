@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { Link, useLocation } from "react-router"
 import { motion, AnimatePresence } from "motion/react"
-import logo from "../../../public/images/infifnite-pathways-logo.svg"
+
+const logo = "/images/infifnite-pathways-logo.svg"
 
 const Navigation = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -32,8 +33,8 @@ const Navigation = () => {
                                 key={link.path}
                                 to={link.path}
                                 className={`relative text-sm tracking-wide transition-colors duration-200 ${isActive(link.path)
-                                        ? "text-[#687b0a] font-medium"
-                                        : "text-[#545454] hover:text-[#687b0a]"
+                                    ? "text-[#687b0a] font-medium"
+                                    : "text-[#545454] hover:text-[#687b0a]"
                                     }`}
                             >
                                 {link.name}
@@ -85,8 +86,8 @@ const Navigation = () => {
                                     to={link.path}
                                     onClick={() => setMobileMenuOpen(false)}
                                     className={`text-base py-2 transition-colors ${isActive(link.path)
-                                            ? "text-[#687b0a] font-medium"
-                                            : "text-[#545454]"
+                                        ? "text-[#687b0a] font-medium"
+                                        : "text-[#545454]"
                                         }`}
                                 >
                                     {link.name}

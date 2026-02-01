@@ -1,5 +1,6 @@
 import { Link } from "react-router"
-import logo from "../../../public/images/infifnite-pathways-logo.svg"
+
+const logo = "/images/infifnite-pathways-logo.svg"
 
 const Footer = () => {
     return (
