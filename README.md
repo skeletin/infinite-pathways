@@ -1,73 +1,110 @@
-# React + TypeScript + Vite
+# Infinite Pathways
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A warm, personal landing page for a Licensed Clinical Social Worker (LCSW) offering therapy services. Built with a focus on approachability and healing-centered design.
 
-Currently, two official plugins are available:
+## About
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Infinite Pathways is a therapy services website designed with the philosophy that "healing isn't linear and no two paths look the same." The site features an earthy, natural color palette and warm, service-oriented messaging that feels personal.
 
-## React Compiler
+### Design Philosophy
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Earthy tones**: Olive greens, warm browns, cream backgrounds
+- **Personal touch**: Language that feels human and approachable
+- **Healing-centered**: Emphasis on compassion, patience, and meeting clients where they are
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Animated splash screen** with floating gradient orbs and tagline reveal
+- **Responsive navigation** with mobile hamburger menu
+- **Four main pages**:
+  - **Home** - Hero section, values, and call-to-action
+  - **About** - Therapist story, values, and credentials
+  - **Services** - Individual therapy, anxiety support, life transitions, trauma care
+  - **Contact** - Contact form with email/phone options
+- **Smooth animations** powered by Motion
+- **Modern, accessible design** with Tailwind CSS
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **React 19** - UI framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Tailwind CSS 4** - Utility-first styling
+- **Motion** - Animations and transitions
+- **React Router 7** - Client-side routing
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The site will be available at `http://localhost:5173`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Build
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── features/
+│   │   └── SplashScreen.tsx      # Animated loading screen
+│   ├── layouts/
+│   │   ├── AppLayout.tsx         # Main layout wrapper
+│   │   ├── Navigation.tsx        # Header navigation
+│   │   └── Footer.tsx            # Site footer
+│   ├── pages/
+│   │   ├── Home/                 # Landing page
+│   │   ├── About/                # About the therapist
+│   │   ├── Services/             # Services offered
+│   │   └── Contact/              # Contact form
+│   └── providers/
+│       └── AppInitializer.tsx    # Splash screen logic
+├── App.tsx                       # Routes and app structure
+├── main.tsx                      # Entry point
+└── index.css                     # Global styles
+```
+
+## Color Palette
+
+| Color       | Hex       | Usage                               |
+| ----------- | --------- | ----------------------------------- |
+| Olive Green | `#687b0a` | Primary accent, buttons, highlights |
+| Dark Olive  | `#3d4a28` | Headings, footer background         |
+| Warm Brown  | `#8b7755` | Secondary accent                    |
+| Gray        | `#545454` | Body text                           |
+| Cream       | `#faf8f3` | Background                          |
+| Sand        | `#f5f2eb` | Section backgrounds                 |
+
+## Scripts
+
+| Command           | Description              |
+| ----------------- | ------------------------ |
+| `npm run dev`     | Start development server |
+| `npm run build`   | Build for production     |
+| `npm run preview` | Preview production build |
+| `npm run lint`    | Run ESLint               |
+
+## License
+
+Private project - All rights reserved.
