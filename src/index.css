@@ -1,9 +1,32 @@
 @import "tailwindcss";
 
-/* Font family variables */
+/* Enable class-based dark mode (Tailwind v4) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Brand palette */
+  --color-brand-darkest: #373622;
+  --color-brand-primary: #5c5a36;
+  --color-brand-secondary: #865f39;
+  --color-brand-accent: #a88358;
+  --color-brand-deep: #412d1b;
+
+  /* Light surfaces */
+  --color-cream: #faf5ee;
+  --color-cream-dark: #ede8df;
+  --color-sage: #d5d3c3;
+  --color-warm-white: #fffcf8;
+
+  /* Dark surfaces (warm olive-tinted) */
+  --color-dark-bg: #17160f;
+  --color-dark-surface: #1e1d15;
+  --color-dark-card: #28261e;
+}
+
+/* App Variables */
 :root {
-  --font-heading: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --font-body: "Nunito", system-ui, -apple-system, sans-serif;
+  --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Source Sans 3", system-ui, -apple-system, sans-serif;
 }
 
 html,
@@ -21,7 +44,6 @@ body,
 
 html {
   scroll-behavior: smooth;
-  /* Prevent horizontal scroll on mobile */
   overflow-x: hidden;
 }
 
@@ -29,52 +51,21 @@ body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #faf8f3;
-  color: #545454;
+  background-color: #faf5ee;
+  color: #412d1b;
   font-weight: 400;
-  line-height: 1.6;
-  /* Prevent horizontal scroll on mobile */
-  overflow-x: hidden;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
-/* ===== ANIMATION PERFORMANCE OPTIMIZATIONS ===== */
-
-/* GPU acceleration for animated elements */
-.blur-3xl,
-[class*="animate"],
-[class*="motion"] {
-  will-change: transform, opacity;
-  transform: translateZ(0);
-  backface-visibility: hidden;
+.dark body {
+  background-color: #17160f;
+  color: #faf5ee;
 }
 
-/* Reduce motion for users who prefer it */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* Mobile performance: simplify heavy animations */
-@media (max-width: 768px) {
-  /* Reduce blur intensity on mobile for better performance */
-  .blur-3xl {
-    filter: blur(40px) !important;
-  }
-
-  /* Hide decorative floating particles on mobile */
-  .absolute.rounded-full[class*="bg-"][style*="width: 6px"],
-  .absolute.rounded-full[class*="bg-"][style*="width: 8px"],
-  .absolute.rounded-full[class*="bg-"][style*="width: 10px"] {
-    display: none;
-  }
-}
-
-/* Headings use Cormorant Garamond */
 h1,
 h2,
 h3,
@@ -86,60 +77,115 @@ h6 {
   line-height: 1.2;
 }
 
-/* Make font-light headings even lighter */
-.font-light {
-  font-weight: 300;
-}
-
-/* Italic text in headings */
-h1 em,
-h1 i,
-h1 .italic,
-h2 em,
-h2 i,
-h2 .italic,
-h3 em,
-h3 i,
-h3 .italic {
-  font-style: italic;
+/* PT Serif — local accent font for Gate & display moments */
+@font-face {
+  font-family: "PT Serif";
   font-weight: 400;
+  font-style: normal;
+  src: url("/fonts/pt-serif/PTF55F.ttf") format("truetype");
 }
 
-/* Navigation and buttons use body font */
-nav,
-button,
-.btn,
-a.rounded-full {
-  font-family: var(--font-body);
+@font-face {
+  font-family: "PT Serif";
+  font-weight: 400;
+  font-style: italic;
+  src: url("/fonts/pt-serif/PTF56F.ttf") format("truetype");
 }
 
-/* Labels and small text */
-label,
-.text-sm {
-  font-family: var(--font-body);
+@font-face {
+  font-family: "PT Serif";
+  font-weight: 700;
+  font-style: normal;
+  src: url("/fonts/pt-serif/PTF75F.ttf") format("truetype");
 }
 
-/* Uppercase tracking text (tags/labels) */
-.uppercase.tracking-\[0\.2em\] {
-  font-family: var(--font-body);
-  font-weight: 600;
-  letter-spacing: 0.2em;
+@font-face {
+  font-family: "PT Serif";
+  font-weight: 700;
+  font-style: italic;
+  src: url("/fonts/pt-serif/PTF76F.ttf") format("truetype");
+}
+
+.font-pt-serif {
+  font-family: "PT Serif", Georgia, serif;
+}
+
+/* GPU-optimized animation layer */
+.will-animate {
+  will-change: transform, opacity;
 }
 
 ::selection {
-  background-color: rgba(104, 123, 10, 0.2);
-  color: #3d4a28;
+  background-color: rgba(168, 131, 88, 0.3);
+  color: #412d1b;
 }
 
-/* Smooth font loading */
-.fonts-loading h1,
-.fonts-loading h2,
-.fonts-loading h3 {
-  opacity: 0;
+.dark ::selection {
+  background-color: rgba(168, 131, 88, 0.4);
+  color: #faf5ee;
 }
 
-h1,
-h2,
-h3 {
-  transition: opacity 0.3s ease;
+/* Nav link animated underline */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(168, 131, 88, 0.6), transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.35s cubic-bezier(0.25, 0.4, 0.25, 1);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Card shimmer sweep on hover */
+.shimmer-card {
+  position: relative;
+}
+
+.shimmer-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(168, 131, 88, 0.04) 45%,
+    rgba(168, 131, 88, 0.08) 50%,
+    rgba(168, 131, 88, 0.04) 55%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.shimmer-card:hover::before {
+  transform: translateX(100%);
+}
+
+/* Masked text reveal (overflow clip for slide-up) */
+.text-reveal-mask {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

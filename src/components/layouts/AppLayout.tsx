@@ -1,6 +1,5 @@
 import type { ReactNode } from "react"
-import Navigation from "./Navigation"
-import Footer from "./Footer"
+import NavigationBar from "../shared/NavigationBar"
 
 interface AppLayoutProps {
     children: ReactNode
@@ -8,10 +7,11 @@ interface AppLayoutProps {
 
 const AppLayout = ({ children }: AppLayoutProps) => {
     return (
-        <div className="relative min-h-screen flex flex-col">
-            <Navigation />
-            <main className="flex-1">{children}</main>
-            <Footer />
+        <div className="relative min-h-screen w-full">
+            {/* Fixed background image — hero and CTA sections overlay on top */}
+            <div className="fixed inset-0 bg-[url('/images/infinite-pathways-bg.png')] bg-cover bg-center -z-10" />
+            <NavigationBar />
+            <main className="relative">{children}</main>
         </div>
     )
 }
