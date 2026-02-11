@@ -3,6 +3,7 @@ import { useRef, type ReactNode } from "react"
 import { GiLotus, GiMeditation, GiPathDistance } from "react-icons/gi"
 import { PiFlowerLotus, PiHandHeart, PiLeaf, PiSunHorizon, PiHeartbeat, PiButterflyLight, PiPlant, PiQuotes, PiArrowDown, PiArrowUp } from "react-icons/pi"
 import { HiOutlineMail, HiOutlineVideoCamera, HiOutlineClock } from "react-icons/hi"
+import links from "../../data/links"
 
 /* ─── Reusable scroll-reveal (transform + opacity only) ──────────────────── */
 const Reveal = ({
@@ -343,7 +344,7 @@ const Home = () => {
             {/* ════════════════════════════════════════════════════════════════
                 3. ABOUT THE FOUNDER — slow zoom on portrait
             ════════════════════════════════════════════════════════════════ */}
-            <section className="bg-cream-dark dark:bg-dark-surface py-24 md:py-32 px-6 transition-colors duration-300">
+            <section id="founder" className="bg-cream-dark dark:bg-dark-surface py-24 md:py-32 px-6 transition-colors duration-300">
                 <div className="max-w-5xl mx-auto">
                     <div className="grid md:grid-cols-5 gap-10 md:gap-20 items-start">
                         {/* Portrait with slow zoom + rings */}
@@ -512,7 +513,7 @@ const Home = () => {
                         ].map((s, i) => (
                             <Reveal key={s.title} delay={i * 0.1}>
                                 <motion.div
-                                    className="shimmer-card relative p-8 bg-warm-white dark:bg-dark-card rounded-sm border border-sage/50 dark:border-brand-accent/10 group overflow-hidden transition-colors duration-300"
+                                    className="relative p-8 bg-warm-white dark:bg-dark-card rounded-sm border border-sage/50 dark:border-brand-accent/10 group overflow-hidden transition-colors duration-300"
                                     whileHover={{ y: -6, transition: { duration: 0.3 } }}
                                     initial={{ rotate: 0 }}
                                 >
@@ -525,7 +526,7 @@ const Home = () => {
                                         transition={{ duration: 0.6, delay: i * 0.1 + 0.3 }}
                                     />
                                     <CornerBrackets />
-                                    <div className="relative z-[2] flex items-start gap-5">
+                                    <div className="relative z-2 flex items-start gap-5">
                                         <AnimatedIcon delay={i * 0.1 + 0.15} className="text-brand-accent shrink-0 mt-1">
                                             <div className="w-10 h-10 rounded-full border border-brand-accent/20 flex items-center justify-center">
                                                 {s.icon}
@@ -853,17 +854,12 @@ const Home = () => {
                             >
                                 <PiFlowerLotus className="text-brand-accent/50" size={20} />
                             </motion.div>
-                            <p className="text-sm uppercase tracking-[0.3em] text-brand-accent/80 font-pt-serif mb-6">
-                                Infinite Pathways
+                            <p className="lora text-sm tracking-[0.3em] text-brand-accent/80 mb-6">
+                                INFINITE PATHWAYS
                             </p>
 
                             <div className="flex justify-center gap-6 mb-8" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-                                {[
-                                    { label: "Home", href: "#hero" },
-                                    { label: "About", href: "#about" },
-                                    { label: "Services", href: "#services" },
-                                    { label: "Contact", href: "#contact" },
-                                ].map(({ label, href }) => (
+                                {links.map(({ label, href }) => (
                                     <a
                                         key={label}
                                         href={href}

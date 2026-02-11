@@ -1,8 +1,7 @@
 import { useState } from "react"
 import { motion, useScroll, useMotionValueEvent } from "motion/react"
 import DarkModeToggle from "./DarkModeToggle"
-
-const logo = "/images/infinite-pathways-logo.svg"
+import links from "../data/links"
 
 const NavigationBar = () => {
     const [scrolled, setScrolled] = useState(false)
@@ -12,13 +11,6 @@ const NavigationBar = () => {
         setScrolled(latest > window.innerHeight * 0.7)
     })
 
-    const links = [
-        { title: "Home", href: "#hero" },
-        { title: "Founder", href: "#about" },
-        { title: "Services", href: "#services" },
-        { title: "Resources", href: "#professional" },
-        { title: "Contact", href: "#contact" },
-    ]
 
     const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         e.preventDefault()
@@ -33,6 +25,7 @@ const NavigationBar = () => {
                 className="fixed top-0 left-0 right-0 h-[2px] bg-brand-accent/70 origin-left z-50"
                 style={{ scaleX: scrollYProgress }}
             />
+
 
             {/* Nav — transparent over hero, sticky with blur after scrolling */}
             <motion.nav
@@ -49,27 +42,28 @@ const NavigationBar = () => {
                     }
                 `}
             >
-                {/* Logo + dark mode toggle inline */}
+
+                {/* Logo + dark mode toggle */}
                 <div className="flex items-center gap-3 mb-3">
-                    <motion.img
-                        src={logo}
-                        alt="Infinite Pathways"
-                        className="invert"
+                    <motion.div
+                        className="lora tracking-[0.3em] text-white"
                         animate={{ height: scrolled ? 18 : 24 }}
                         transition={{ duration: 0.3 }}
-                    />
+                    >
+                        INFINITE PATHWAYS
+                    </motion.div>
                 </div>
 
                 {/* Nav links with animated underlines */}
                 <div className="flex gap-5" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-                    {links.map(({ href, title }) => (
+                    {links.map(({ href, label }) => (
                         <a
-                            key={title}
+                            key={label}
                             href={href}
                             onClick={(e) => handleScroll(e, href)}
-                            className="nav-link text-xs uppercase tracking-[0.2em] text-white/70 hover:text-white transition-colors duration-300"
+                            className="nav-link text-[0.6rem] uppercase tracking-[0.2em] text-white/70 hover:text-white transition-colors duration-300 md:text-sm"
                         >
-                            {title}
+                            {label}
                         </a>
                     ))}
                 </div>
