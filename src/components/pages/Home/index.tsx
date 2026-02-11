@@ -1,9 +1,8 @@
 import { motion, useInView, useScroll, useTransform } from "motion/react"
 import { useRef, type ReactNode } from "react"
 import { GiMeditation, GiPathDistance } from "react-icons/gi"
-import { PiInfinity, PiHandHeart, PiLeaf, PiSunHorizon, PiHeartbeat, PiButterflyLight, PiPlant, PiQuotes, PiArrowDown, PiArrowUp } from "react-icons/pi"
-import { HiOutlineMail, HiOutlineVideoCamera, HiOutlineClock } from "react-icons/hi"
-import links from "../../data/links"
+import { PiInfinity, PiHandHeart, PiLeaf, PiSunHorizon, PiHeartbeat, PiButterflyLight, PiQuotes, PiArrowDown, PiArrowUp, PiInstagramLogo, PiFacebookLogo, PiPhone } from "react-icons/pi"
+import { HiOutlineMail, HiOutlineClock } from "react-icons/hi"
 
 /* ─── Reusable scroll-reveal (transform + opacity only) ──────────────────── */
 const Reveal = ({
@@ -31,7 +30,7 @@ const Reveal = ({
     )
 }
 
-/* ─── Masked text reveal — text slides up from behind a clip mask ────────── */
+/* ─── Masked text reveal ─────────────────────────────────────────────────── */
 const MaskedReveal = ({
     children,
     className = "",
@@ -107,7 +106,7 @@ const SectionHeading = ({ children, className = "" }: { children: ReactNode; cla
 )
 
 /* ─── Infinity divider ───────────────────────────────────────────────────── */
-const LotusDivider = ({ delay = 0 }: { delay?: number }) => (
+const InfinityDivider = ({ delay = 0 }: { delay?: number }) => (
     <div className="flex items-center justify-center gap-4 my-8">
         <motion.div
             className="w-16 h-px bg-linear-to-r from-transparent to-brand-accent/30"
@@ -171,7 +170,6 @@ const Home = () => {
     const heroTextY = useTransform(scrollYProgress, [0, 1], [0, 60])
     const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.08])
 
-    /* Parallax layers for background depth between sections */
     const aboutRef = useRef(null)
     const { scrollYProgress: aboutProgress } = useScroll({ target: aboutRef, offset: ["start end", "end start"] })
     const aboutParallax = useTransform(aboutProgress, [0, 1], [30, -30])
@@ -180,29 +178,32 @@ const Home = () => {
         window.scrollTo({ top: 0, behavior: "smooth" })
     }
 
+    const scrollToContact = (e: React.MouseEvent) => {
+        e.preventDefault()
+        document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })
+    }
+
     return (
         <div className="flex flex-col">
             {/* ════════════════════════════════════════════════════════════════
-                1. HERO — Staggered text + parallax background zoom
+                1. HERO
             ════════════════════════════════════════════════════════════════ */}
             <section
                 ref={heroRef}
                 id="hero"
                 className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
             >
-                {/* Background with subtle zoom on scroll */}
                 <motion.div
                     className="absolute inset-0 bg-[url('/images/infinite-pathways-bg.png')] bg-cover bg-center"
                     style={{ scale: heroScale }}
                 />
                 <motion.div className="absolute inset-0 bg-brand-darkest" style={{ opacity: heroOverlayOpacity }} />
 
-                {/* Hero content with parallax */}
                 <motion.div
                     className="relative z-10 text-center px-6 will-animate"
                     style={{ y: heroTextY }}
                 >
-                    {/* Pulsing lotus */}
+                    {/* Pulsing infinity */}
                     <motion.div
                         className="flex justify-center mb-8"
                         initial={{ opacity: 0, scale: 0.5 }}
@@ -217,42 +218,59 @@ const Home = () => {
                         </motion.div>
                     </motion.div>
 
-                    {/* Staggered word-by-word headline */}
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl text-white tracking-wide leading-tight mb-4"
+                    {/* Staggered headline */}
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl text-white tracking-wide leading-tight mb-2"
                         style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                     >
-                        <HeroWord word="Your" delay={0.3} />{" "}
-                        <HeroWord word="Path" delay={0.45} />{" "}
-                        <HeroWord word="to" delay={0.6} />{" "}
-                        <HeroWord word="Healing" delay={0.75} />
-                        <br />
-                        <motion.em
-                            className="text-brand-accent/90 inline-block"
-                            initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-                            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                            transition={{ duration: 0.8, delay: 1.0, ease: [0.25, 0.4, 0.25, 1] }}
-                        >
-                            Starts Here
-                        </motion.em>
+                        <HeroWord word="Healing" delay={0.3} />{" "}
+                        <HeroWord word="Without" delay={0.45} />{" "}
+                        <HeroWord word="Limits" delay={0.6} />
                     </h1>
+                    <motion.p
+                        className="text-2xl md:text-3xl lg:text-4xl text-brand-accent/90 mb-4 italic"
+                        style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                        initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        transition={{ duration: 0.7, delay: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+                    >
+                        Your Journey. Your Path.
+                    </motion.p>
 
                     {/* Animated underline */}
                     <motion.div
                         className="h-px bg-linear-to-r from-transparent via-brand-accent/60 to-transparent mx-auto mb-6"
                         initial={{ width: 0 }}
                         animate={{ width: 180 }}
-                        transition={{ duration: 1, delay: 1.3, ease: [0.25, 0.4, 0.25, 1] }}
+                        transition={{ duration: 1, delay: 1.1, ease: [0.25, 0.4, 0.25, 1] }}
                     />
 
                     <motion.p
-                        className="text-sm md:text-base tracking-[0.15em] text-white/60 max-w-md mx-auto"
+                        className="text-sm md:text-base tracking-widest text-white/60 max-w-lg mx-auto mb-10"
                         style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 1.5 }}
+                        transition={{ duration: 0.8, delay: 1.3 }}
                     >
-                        Therapy &amp; wellness services rooted in compassion
+                        Support for life's challenges — personal growth, healing, or finding clarity in life and work.
                     </motion.p>
+
+                    {/* CTA Button */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 1.6 }}
+                    >
+                        <a href="#contact" onClick={scrollToContact}>
+                            <motion.button
+                                className="relative px-10 py-3.5 bg-cream/90 text-brand-deep text-sm tracking-[0.15em] uppercase rounded-sm hover:bg-white transition-colors duration-300 overflow-hidden group cursor-pointer"
+                                whileHover={{ scale: 1.03 }}
+                                whileTap={{ scale: 0.98 }}
+                            >
+                                <span className="absolute inset-0 bg-brand-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                <span className="relative">Schedule a Session</span>
+                            </motion.button>
+                        </a>
+                    </motion.div>
                 </motion.div>
 
                 {/* Scroll indicator */}
@@ -277,7 +295,7 @@ const Home = () => {
             </section>
 
             {/* ════════════════════════════════════════════════════════════════
-                2. ABOUT THE PRACTICE — with parallax text layer
+                2. ABOUT THE PRACTICE
             ════════════════════════════════════════════════════════════════ */}
             <section ref={aboutRef} id="about" className="bg-cream dark:bg-dark-bg py-24 md:py-32 px-6 transition-colors duration-300">
                 <motion.div className="max-w-3xl mx-auto text-center" style={{ y: aboutParallax }}>
@@ -287,29 +305,21 @@ const Home = () => {
                     <MaskedReveal delay={0.1}>
                         <SectionHeading>Infinite Pathways</SectionHeading>
                     </MaskedReveal>
-                    <LotusDivider delay={0.15} />
+                    <InfinityDivider delay={0.15} />
                     <Reveal delay={0.2}>
                         <p className="text-brand-deep/75 dark:text-cream/70 text-lg leading-relaxed max-w-2xl mx-auto">
-                            Infinite Pathways is a therapeutic practice rooted in the belief that
-                            healing isn't linear — and no two paths look the same. We create a warm,
-                            grounded space where you can explore, grow, and reconnect with yourself
-                            at your own pace.
-                        </p>
-                    </Reveal>
-                    <Reveal delay={0.25}>
-                        <p className="text-brand-deep/60 dark:text-cream/50 leading-relaxed max-w-2xl mx-auto mt-6">
-                            Whether you're navigating anxiety, processing life transitions, or simply
-                            seeking a place to be truly heard — you don't have to walk the path alone.
+                            We help you find your path in life, healing, and growth. Every journey is unique,
+                            and we guide you with clarity, insight, and strategies to step forward with confidence.
                         </p>
                     </Reveal>
                 </motion.div>
 
-                {/* Values grid */}
+                {/* Core Values */}
                 <div className="max-w-4xl mx-auto mt-20 grid md:grid-cols-3 gap-14 text-center">
                     {[
-                        { icon: <PiHandHeart size={26} />, title: "Compassion", body: "You deserve kindness — from others and from yourself. Here, there's no rush." },
-                        { icon: <PiInfinity size={26} />, title: "Your Pace", body: "Healing doesn't follow a timeline. We move at a rhythm that feels right for you." },
-                        { icon: <PiSunHorizon size={26} />, title: "Connection", body: "Therapy works best when you feel safe. I strive to create warmth and authenticity." },
+                        { icon: <PiHandHeart size={26} />, title: "Understand & Accept", body: "Know yourself, embrace yourself. Self-awareness is the first step toward lasting change." },
+                        { icon: <PiLeaf size={26} />, title: "Grow", body: "Progress, transform, thrive. Every step forward — no matter how small — is a step worth taking." },
+                        { icon: <PiSunHorizon size={26} />, title: "Empower Yourself", body: "Build confidence. Take control. You already have what you need to shape your path." },
                     ].map((v, i) => (
                         <Reveal key={v.title} delay={i * 0.12}>
                             <motion.div
@@ -342,12 +352,12 @@ const Home = () => {
             </section>
 
             {/* ════════════════════════════════════════════════════════════════
-                3. ABOUT THE FOUNDER — slow zoom on portrait
+                3. ABOUT THE FOUNDER
             ════════════════════════════════════════════════════════════════ */}
-            <section id="founder" className="bg-cream-dark dark:bg-dark-surface py-24 md:py-32 px-6 transition-colors duration-300">
+            <section className="bg-cream-dark dark:bg-dark-surface py-24 md:py-32 px-6 transition-colors duration-300">
                 <div className="max-w-5xl mx-auto">
                     <div className="grid md:grid-cols-5 gap-10 md:gap-20 items-start">
-                        {/* Portrait with slow zoom + rings */}
+                        {/* Portrait */}
                         <Reveal className="md:col-span-2 flex justify-center">
                             <div className="relative w-36 h-36 md:w-72 md:h-72 shrink-0">
                                 <div className="w-full h-full rounded-full overflow-hidden bg-brand-primary/10 dark:bg-brand-primary/20 relative z-10">
@@ -386,7 +396,7 @@ const Home = () => {
                             </div>
                         </Reveal>
 
-                        {/* Story — masked reveals on headings */}
+                        {/* Story */}
                         <div className="md:col-span-3 space-y-6 text-center md:text-left">
                             <Reveal>
                                 <SectionLabel>Meet the Founder</SectionLabel>
@@ -398,7 +408,7 @@ const Home = () => {
                                 <div className="flex items-center gap-3 my-6 justify-center md:justify-start">
                                     <div className="w-10 h-px bg-linear-to-r from-brand-accent/40 to-transparent" />
                                     <AnimatedIcon delay={0.2}>
-                                        <PiLeaf className="text-brand-accent/50" size={14} />
+                                        <PiInfinity className="text-brand-accent/50" size={14} />
                                     </AnimatedIcon>
                                 </div>
                             </Reveal>
@@ -419,9 +429,9 @@ const Home = () => {
                             <Reveal delay={0.3}>
                                 <div className="pt-8 flex flex-col gap-3 text-sm text-brand-deep/50 dark:text-cream/40">
                                     {[
-                                        "Licensed Clinical Social Worker (LCSW)",
-                                        "Master of Social Work, Clinical Concentration",
-                                        "Trauma-Informed & Mindfulness-Based Approaches",
+                                        "Licensed Clinical Social Worker in Illinois and Indiana",
+                                        "Master's Degree in Social Work",
+                                        "Certificate in Veterinary Social Work and Trauma-Informed Care",
                                     ].map((cred, i) => (
                                         <motion.div
                                             key={cred}
@@ -449,7 +459,7 @@ const Home = () => {
             </section>
 
             {/* ════════════════════════════════════════════════════════════════
-                PULL QUOTE — word-by-word stagger
+                PULL QUOTE
             ════════════════════════════════════════════════════════════════ */}
             <section className="bg-cream dark:bg-dark-bg py-20 px-6 transition-colors duration-300">
                 <div className="max-w-2xl mx-auto text-center">
@@ -457,7 +467,7 @@ const Home = () => {
                         <PiQuotes className="text-brand-accent/25 mx-auto mb-4" size={32} />
                     </Reveal>
                     <blockquote className="text-2xl md:text-3xl font-pt-serif text-brand-deep/80 dark:text-cream/75 leading-snug italic">
-                        {`"Healing isn't linear — and no two paths look the same."`.split(" ").map((word, i) => (
+                        {"Healing isn't linear, and your path doesn't have to look like anyone else's.".split(" ").map((word, i) => (
                             <MaskedReveal key={i} className="inline-block mr-[0.3em]" delay={i * 0.05}>
                                 <span>{word}</span>
                             </MaskedReveal>
@@ -486,7 +496,7 @@ const Home = () => {
             </section>
 
             {/* ════════════════════════════════════════════════════════════════
-                4. CLINICAL THERAPY SERVICES — shimmer cards + stagger
+                4. CLINICAL SERVICES (3 services)
             ════════════════════════════════════════════════════════════════ */}
             <section id="services" className="bg-cream-dark dark:bg-dark-surface py-24 md:py-32 px-6 transition-colors duration-300">
                 <div className="max-w-5xl mx-auto">
@@ -495,7 +505,7 @@ const Home = () => {
                         <MaskedReveal delay={0.1}>
                             <SectionHeading className="mb-4">Therapeutic Services</SectionHeading>
                         </MaskedReveal>
-                        <LotusDivider delay={0.15} />
+                        <InfinityDivider delay={0.15} />
                         <Reveal delay={0.2}>
                             <p className="text-brand-deep/60 dark:text-cream/50 max-w-lg mx-auto">
                                 Every service is rooted in compassion and the belief that
@@ -504,20 +514,32 @@ const Home = () => {
                         </Reveal>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-8">
+                    <div className="grid md:grid-cols-3 gap-8">
                         {[
-                            { icon: <GiMeditation size={24} />, title: "Individual Therapy", desc: "One-on-one sessions tailored to your unique needs. We'll work through anxiety, depression, or life transitions together at your pace.", detail: "50-minute sessions · Virtual or in-person" },
-                            { icon: <PiHeartbeat size={24} />, title: "Anxiety & Stress", desc: "Learn to understand your anxiety rather than fight it. Together, we'll develop practical tools and deeper self-awareness.", detail: "Evidence-based · Mindfulness integration" },
-                            { icon: <PiButterflyLight size={24} />, title: "Life Transitions", desc: "Change — even positive change — can feel overwhelming. Whether it's a career shift, relationship change, or identity exploration.", detail: "Relationships · Career · Identity" },
-                            { icon: <PiPlant size={24} />, title: "Trauma-Informed Care", desc: "Healing from trauma requires safety, patience, and understanding. We move at your pace, always honoring your experience.", detail: "Safe approach · Building resilience" },
+                            {
+                                icon: <GiMeditation size={24} />,
+                                title: "Individual Therapy",
+                                desc: "Personalized one-on-one sessions to help you navigate anxiety, self-doubt, and life's challenges. Build clarity, resilience, and confidence on your unique journey.",
+                                detail: "Personalized · One-on-one",
+                            },
+                            {
+                                icon: <PiHeartbeat size={24} />,
+                                title: "Grief & Loss Support",
+                                desc: "Compassionate guidance through the pain of losing a loved one or pet. Honor your experience while finding ways to heal and move forward.",
+                                detail: "Compassionate · Healing-focused",
+                            },
+                            {
+                                icon: <PiButterflyLight size={24} />,
+                                title: "Life Transitions",
+                                desc: "Support through change, uncertainty, and new beginnings. Gain tools and insight to navigate transitions with confidence and clarity.",
+                                detail: "Change · Growth · Clarity",
+                            },
                         ].map((s, i) => (
                             <Reveal key={s.title} delay={i * 0.1}>
                                 <motion.div
                                     className="relative p-8 bg-warm-white dark:bg-dark-card rounded-sm border border-sage/50 dark:border-brand-accent/10 group overflow-hidden transition-colors duration-300"
                                     whileHover={{ y: -6, transition: { duration: 0.3 } }}
-                                    initial={{ rotate: 0 }}
                                 >
-                                    {/* Top accent line — draws on scroll */}
                                     <motion.div
                                         className="absolute top-0 left-0 right-0 h-[2px] bg-linear-to-r from-brand-accent/60 via-brand-secondary/40 to-transparent origin-left"
                                         initial={{ scaleX: 0 }}
@@ -526,32 +548,30 @@ const Home = () => {
                                         transition={{ duration: 0.6, delay: i * 0.1 + 0.3 }}
                                     />
                                     <CornerBrackets />
-                                    <div className="relative z-2 flex items-start gap-5">
-                                        <AnimatedIcon delay={i * 0.1 + 0.15} className="text-brand-accent shrink-0 mt-1">
+                                    <div className="relative z-2">
+                                        <AnimatedIcon delay={i * 0.1 + 0.15} className="text-brand-accent mb-5">
                                             <div className="w-10 h-10 rounded-full border border-brand-accent/20 flex items-center justify-center">
                                                 {s.icon}
                                             </div>
                                         </AnimatedIcon>
-                                        <div>
-                                            <h3 className="text-xl font-pt-serif text-brand-deep dark:text-cream tracking-wide mb-3">{s.title}</h3>
-                                            <p className="text-brand-deep/65 dark:text-cream/55 leading-relaxed mb-4 text-sm">{s.desc}</p>
-                                            <motion.p
-                                                className="text-xs text-brand-accent/80 tracking-wide flex items-center gap-2"
-                                                initial={{ opacity: 0, x: -8 }}
-                                                whileInView={{ opacity: 1, x: 0 }}
+                                        <h3 className="text-xl font-pt-serif text-brand-deep dark:text-cream tracking-wide mb-3">{s.title}</h3>
+                                        <p className="text-brand-deep/65 dark:text-cream/55 leading-relaxed mb-4 text-sm">{s.desc}</p>
+                                        <motion.p
+                                            className="text-xs text-brand-accent/80 tracking-wide flex items-center gap-2"
+                                            initial={{ opacity: 0, x: -8 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: i * 0.1 + 0.4, duration: 0.4 }}
+                                        >
+                                            <motion.span
+                                                className="block w-3 h-px bg-brand-accent/40"
+                                                initial={{ width: 0 }}
+                                                whileInView={{ width: 12 }}
                                                 viewport={{ once: true }}
-                                                transition={{ delay: i * 0.1 + 0.4, duration: 0.4 }}
-                                            >
-                                                <motion.span
-                                                    className="block w-3 h-px bg-brand-accent/40"
-                                                    initial={{ width: 0 }}
-                                                    whileInView={{ width: 12 }}
-                                                    viewport={{ once: true }}
-                                                    transition={{ delay: i * 0.1 + 0.5, duration: 0.3 }}
-                                                />
-                                                {s.detail}
-                                            </motion.p>
-                                        </div>
+                                                transition={{ delay: i * 0.1 + 0.5, duration: 0.3 }}
+                                            />
+                                            {s.detail}
+                                        </motion.p>
                                     </div>
                                 </motion.div>
                             </Reveal>
@@ -561,29 +581,38 @@ const Home = () => {
             </section>
 
             {/* ════════════════════════════════════════════════════════════════
-                5. NON-CLINICAL / PROFESSIONAL SERVICES
+                5. PROFESSIONAL SERVICES (2 services)
             ════════════════════════════════════════════════════════════════ */}
             <section id="professional" className="bg-cream dark:bg-dark-bg py-24 md:py-32 px-6 transition-colors duration-300">
-                <div className="max-w-5xl mx-auto">
+                <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-20">
                         <Reveal><SectionLabel>Professional Services</SectionLabel></Reveal>
                         <MaskedReveal delay={0.1}>
                             <SectionHeading className="mb-4">Beyond the Therapy Room</SectionHeading>
                         </MaskedReveal>
-                        <LotusDivider delay={0.15} />
+                        <InfinityDivider delay={0.15} />
                         <Reveal delay={0.2}>
                             <p className="text-brand-deep/60 dark:text-cream/50 max-w-lg mx-auto">
                                 Expertise and guidance for professionals, organizations,
-                                and those seeking structured personal development.
+                                and those seeking structured growth.
                             </p>
                         </Reveal>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-10">
+                    <div className="grid md:grid-cols-2 gap-10">
                         {[
-                            { icon: <GiPathDistance size={22} />, num: "01", title: "Clinical Supervision", desc: "Supportive supervision for emerging clinicians seeking licensure and professional growth." },
-                            { icon: <PiInfinity size={22} />, num: "02", title: "Workshops & Training", desc: "Tailored workshops on mental health awareness, self-care practices, and trauma-informed approaches." },
-                            { icon: <PiHandHeart size={22} />, num: "03", title: "Consultation", desc: "Professional consultation for teams building emotionally intelligent, healthy workplace cultures." },
+                            {
+                                icon: <GiPathDistance size={22} />,
+                                num: "01",
+                                title: "Workshops & Trainings",
+                                desc: "Interactive sessions designed to foster growth, resilience, and effective communication for teams and organizations. Tailored to meet your goals and needs.",
+                            },
+                            {
+                                icon: <PiHandHeart size={22} />,
+                                num: "02",
+                                title: "Consultations",
+                                desc: "Strategic guidance for individuals or organizations seeking clarity, problem-solving, or growth strategies. Practical solutions with care and insight.",
+                            },
                         ].map((s, i) => (
                             <Reveal key={s.title} delay={i * 0.12}>
                                 <motion.div
@@ -622,26 +651,11 @@ const Home = () => {
             </section>
 
             {/* ════════════════════════════════════════════════════════════════
-                6. CTA BANNER — enhanced button glow
+                6. CTA BANNER
             ════════════════════════════════════════════════════════════════ */}
             <section className="relative py-32 md:py-44 overflow-hidden">
                 <div className="absolute inset-0 bg-[url('/images/infinite-pathways-bg.png')] bg-cover bg-center" />
                 <div className="absolute inset-0 bg-brand-darkest/70" />
-
-                <motion.div
-                    className="absolute top-[20%] left-[12%] text-white/6 will-animate hidden md:block"
-                    animate={{ y: [0, -10, 0], rotate: [0, 8, 0] }}
-                    transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                >
-                    <PiInfinity size={32} />
-                </motion.div>
-                <motion.div
-                    className="absolute bottom-[20%] right-[10%] text-white/5 will-animate hidden md:block"
-                    animate={{ y: [0, 8, 0] }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                >
-                    <PiLeaf size={26} />
-                </motion.div>
 
                 <Reveal className="relative z-10 text-center px-6">
                     <motion.div
@@ -661,7 +675,7 @@ const Home = () => {
 
                     <MaskedReveal delay={0.1}>
                         <h2 className="text-3xl md:text-5xl font-pt-serif text-white tracking-wider leading-tight mb-4 max-w-2xl mx-auto">
-                            TAKE THE STEPS TOWARDS NURTURING YOUR INNER SELF
+                            Step Into Your Journey
                         </h2>
                     </MaskedReveal>
 
@@ -672,43 +686,36 @@ const Home = () => {
                         viewport={{ once: true }}
                         transition={{ delay: 0.4, duration: 0.6 }}
                     >
-                        Your journey toward healing and self-discovery begins with a single step.
+                        Every path is unique. Start yours today with support and guidance.
                     </motion.p>
 
-                    <a
-                        href="#contact"
-                        onClick={(e) => {
-                            e.preventDefault()
-                            document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })
-                        }}
-                    >
+                    <a href="#contact" onClick={scrollToContact}>
                         <motion.button
-                            className="relative px-10 py-3.5 bg-cream/90 text-brand-deep text-sm tracking-[0.15em] uppercase rounded-sm hover:bg-white transition-colors duration-300 overflow-hidden group"
+                            className="relative px-10 py-3.5 bg-cream/90 text-brand-deep text-sm tracking-[0.15em] uppercase rounded-sm hover:bg-white transition-colors duration-300 overflow-hidden group cursor-pointer"
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.98 }}
                         >
-                            {/* Button glow on hover */}
                             <span className="absolute inset-0 bg-brand-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <span className="relative">Contact Us</span>
+                            <span className="relative">Contact Me</span>
                         </motion.button>
                     </a>
                 </Reveal>
             </section>
 
             {/* ════════════════════════════════════════════════════════════════
-                7. CONTACT / GET STARTED — animated focus + stagger
+                7. CONTACT
             ════════════════════════════════════════════════════════════════ */}
             <section id="contact" className="bg-cream dark:bg-dark-bg py-24 md:py-32 px-6 transition-colors duration-300">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-16">
                         <Reveal><SectionLabel>Get Started</SectionLabel></Reveal>
                         <MaskedReveal delay={0.1}>
-                            <SectionHeading className="mb-4">Let's Start a Conversation</SectionHeading>
+                            <SectionHeading className="mb-4">Step Into Your Journey</SectionHeading>
                         </MaskedReveal>
-                        <LotusDivider delay={0.15} />
+                        <InfinityDivider delay={0.15} />
                         <Reveal delay={0.2}>
                             <p className="text-brand-deep/60 dark:text-cream/50 max-w-md mx-auto">
-                                Reaching out takes courage. I'm glad you're here.
+                                Every path is unique. Start yours today with support and guidance.
                             </p>
                         </Reveal>
                     </div>
@@ -765,12 +772,13 @@ const Home = () => {
                             </form>
                         </Reveal>
 
-                        {/* Info with icons */}
+                        {/* Info */}
                         <Reveal delay={0.15}>
                             <div className="space-y-8">
+                                {/* Contact details */}
                                 {[
-                                    { icon: <HiOutlineMail size={18} />, title: "Email", main: "hello@infinitepathways.com", sub: "I typically respond within 24–48 hours" },
-                                    { icon: <HiOutlineVideoCamera size={18} />, title: "Virtual Sessions", main: "Secure video therapy available", sub: "Connect from wherever you're comfortable" },
+                                    { icon: <HiOutlineMail size={18} />, title: "Email", main: "Dscaife@myinfinitepathways.com", sub: "I typically respond within 24–48 hours" },
+                                    { icon: <PiPhone size={18} />, title: "Phone", main: "(847) 859-9258", sub: "Call or text — I'm happy to connect" },
                                     { icon: <HiOutlineClock size={18} />, title: "Availability", main: "Weekdays & select evenings", sub: "Flexible scheduling to fit your life" },
                                 ].map((item, i) => (
                                     <motion.div
@@ -792,14 +800,14 @@ const Home = () => {
                                     </motion.div>
                                 ))}
 
-                                {/* What happens next — timeline */}
-                                <div className="pt-8 border-t border-sage dark:border-brand-accent/15">
+
+
+                                {/* What happens next */}
+                                <div className="pt-6 border-t border-sage dark:border-brand-accent/15">
                                     <h3 className="text-sm font-pt-serif text-brand-deep dark:text-cream tracking-wide mb-6">What happens next?</h3>
                                     <div className="space-y-0">
                                         {[
                                             "I'll respond within 1–2 business days",
-                                            "We'll schedule a brief phone consultation",
-                                            "If we're a good fit, we'll book your first session",
                                         ].map((step, i) => (
                                             <motion.div
                                                 key={i}
@@ -809,31 +817,41 @@ const Home = () => {
                                                 viewport={{ once: true }}
                                                 transition={{ delay: 0.3 + i * 0.12, duration: 0.5 }}
                                             >
-                                                <div className="flex flex-col items-center shrink-0">
-                                                    <motion.div
-                                                        className="w-6 h-6 rounded-full border border-brand-accent/30 flex items-center justify-center text-[10px] text-brand-accent"
-                                                        initial={{ scale: 0 }}
-                                                        whileInView={{ scale: 1 }}
-                                                        viewport={{ once: true }}
-                                                        transition={{ delay: 0.35 + i * 0.12, type: "spring", stiffness: 200 }}
-                                                    >
-                                                        {i + 1}
-                                                    </motion.div>
-                                                    {i < 2 && (
-                                                        <motion.div
-                                                            className="w-px bg-brand-accent/15"
-                                                            initial={{ height: 0 }}
-                                                            whileInView={{ height: 24 }}
-                                                            viewport={{ once: true }}
-                                                            transition={{ delay: 0.5 + i * 0.12, duration: 0.3 }}
-                                                        />
-                                                    )}
-                                                </div>
                                                 <p className="text-sm text-brand-deep/60 dark:text-cream/50 pt-1 pb-4">{step}</p>
                                             </motion.div>
                                         ))}
                                     </div>
                                 </div>
+                                {/* Social media */}
+                                <motion.div
+                                    className="pt-6 border-t border-sage dark:border-brand-accent/15"
+                                    initial={{ opacity: 0 }}
+                                    whileInView={{ opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.5, duration: 0.5 }}
+                                >
+                                    <h3 className="text-sm font-pt-serif text-brand-deep dark:text-cream tracking-wide mb-4">Connect with me</h3>
+                                    <div className="flex gap-3">
+                                        <a
+                                            href="https://www.instagram.com/myinfinitepathways"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-10 h-10 rounded-full border border-brand-accent/20 flex items-center justify-center text-brand-accent hover:bg-brand-accent/10 transition-colors duration-300"
+                                            aria-label="Instagram"
+                                        >
+                                            <PiInstagramLogo size={18} />
+                                        </a>
+                                        <a
+                                            href="https://www.facebook.com/share/16ypXiy4cL/"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-10 h-10 rounded-full border border-brand-accent/20 flex items-center justify-center text-brand-accent hover:bg-brand-accent/10 transition-colors duration-300"
+                                            aria-label="Facebook"
+                                        >
+                                            <PiFacebookLogo size={18} />
+                                        </a>
+                                    </div>
+                                </motion.div>
                             </div>
                         </Reveal>
                     </div>
@@ -854,12 +872,17 @@ const Home = () => {
                             >
                                 <PiInfinity className="text-brand-accent/50" size={20} />
                             </motion.div>
-                            <p className="lora text-sm tracking-[0.3em] text-brand-accent/80 mb-6">
-                                INFINITE PATHWAYS
+                            <p className="text-sm uppercase tracking-[0.3em] text-brand-accent/80 font-pt-serif mb-6">
+                                Infinite Pathways
                             </p>
 
-                            <div className="flex justify-center gap-6 mb-8" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-                                {links.map(({ label, href }) => (
+                            <div className="flex justify-center gap-6 mb-6" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                                {[
+                                    { label: "Home", href: "#hero" },
+                                    { label: "About", href: "#about" },
+                                    { label: "Services", href: "#services" },
+                                    { label: "Contact", href: "#contact" },
+                                ].map(({ label, href }) => (
                                     <a
                                         key={label}
                                         href={href}
@@ -874,6 +897,28 @@ const Home = () => {
                                 ))}
                             </div>
 
+                            {/* Social icons */}
+                            <div className="flex justify-center gap-3 mb-6">
+                                <a
+                                    href="https://www.instagram.com/myinfinitepathways"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/40 hover:text-brand-accent hover:border-brand-accent/30 transition-colors duration-300"
+                                    aria-label="Instagram"
+                                >
+                                    <PiInstagramLogo size={14} />
+                                </a>
+                                <a
+                                    href="https://www.facebook.com/share/16ypXiy4cL/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/40 hover:text-brand-accent hover:border-brand-accent/30 transition-colors duration-300"
+                                    aria-label="Facebook"
+                                >
+                                    <PiFacebookLogo size={14} />
+                                </a>
+                            </div>
+
                             <motion.div
                                 className="h-px bg-brand-accent/20 mx-auto mb-6"
                                 initial={{ width: 0 }}
@@ -882,8 +927,11 @@ const Home = () => {
                                 transition={{ duration: 0.5 }}
                             />
 
-                            <p className="text-xs text-white/30 mb-2">
-                                Licensed Clinical Social Worker &middot; Therapy &amp; Professional Services
+                            <p className="text-xs text-white/30 mb-1">
+                                Dscaife@myinfinitepathways.com &middot; (847) 859-9258
+                            </p>
+                            <p className="text-xs text-white/30 mb-4">
+                                Licensed Clinical Social Worker &middot; Illinois &amp; Indiana
                             </p>
                             <p className="text-xs text-white/20">
                                 &copy; {new Date().getFullYear()} Infinite Pathways. All rights reserved.
