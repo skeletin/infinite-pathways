@@ -1,11 +1,11 @@
 [[redirects]]
-  from = "https://myinfinitepathways.netlify.app/*"
+  from = "https://infinite-pathways.netlify.app/*"
   to = "https://myinfinitepathways.com/:splat"
   status = 301
   force = true
 
 [[redirects]]
-  from = "https://myinfinitepathways.netlify.app"
+  from = "https://infinite-pathways.netlify.app"
   to = "https://myinfinitepathways.com"
   status = 301
   force = true
