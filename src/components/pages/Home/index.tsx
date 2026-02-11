@@ -1,7 +1,7 @@
 import { motion, useInView, useScroll, useTransform } from "motion/react"
 import { useRef, type ReactNode } from "react"
-import { GiLotus, GiMeditation, GiPathDistance } from "react-icons/gi"
-import { PiFlowerLotus, PiHandHeart, PiLeaf, PiSunHorizon, PiHeartbeat, PiButterflyLight, PiPlant, PiQuotes, PiArrowDown, PiArrowUp } from "react-icons/pi"
+import { GiMeditation, GiPathDistance } from "react-icons/gi"
+import { PiInfinity, PiHandHeart, PiLeaf, PiSunHorizon, PiHeartbeat, PiButterflyLight, PiPlant, PiQuotes, PiArrowDown, PiArrowUp } from "react-icons/pi"
 import { HiOutlineMail, HiOutlineVideoCamera, HiOutlineClock } from "react-icons/hi"
 import links from "../../data/links"
 
@@ -106,7 +106,7 @@ const SectionHeading = ({ children, className = "" }: { children: ReactNode; cla
     </h2>
 )
 
-/* ─── Lotus divider ──────────────────────────────────────────────────────── */
+/* ─── Infinity divider ───────────────────────────────────────────────────── */
 const LotusDivider = ({ delay = 0 }: { delay?: number }) => (
     <div className="flex items-center justify-center gap-4 my-8">
         <motion.div
@@ -117,7 +117,7 @@ const LotusDivider = ({ delay = 0 }: { delay?: number }) => (
             transition={{ duration: 0.6, delay }}
         />
         <AnimatedIcon delay={delay + 0.1} pulse>
-            <PiFlowerLotus className="text-brand-accent/50 text-lg" />
+            <PiInfinity className="text-brand-accent/50 text-lg" />
         </AnimatedIcon>
         <motion.div
             className="w-16 h-px bg-linear-to-l from-transparent to-brand-accent/30"
@@ -213,7 +213,7 @@ const Home = () => {
                             animate={{ scale: [1, 1.1, 1] }}
                             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                         >
-                            <GiLotus className="text-brand-accent/70" size={36} />
+                            <PiInfinity className="text-brand-accent/70" size={36} />
                         </motion.div>
                     </motion.div>
 
@@ -308,7 +308,7 @@ const Home = () => {
                 <div className="max-w-4xl mx-auto mt-20 grid md:grid-cols-3 gap-14 text-center">
                     {[
                         { icon: <PiHandHeart size={26} />, title: "Compassion", body: "You deserve kindness — from others and from yourself. Here, there's no rush." },
-                        { icon: <PiFlowerLotus size={26} />, title: "Your Pace", body: "Healing doesn't follow a timeline. We move at a rhythm that feels right for you." },
+                        { icon: <PiInfinity size={26} />, title: "Your Pace", body: "Healing doesn't follow a timeline. We move at a rhythm that feels right for you." },
                         { icon: <PiSunHorizon size={26} />, title: "Connection", body: "Therapy works best when you feel safe. I strive to create warmth and authenticity." },
                     ].map((v, i) => (
                         <Reveal key={v.title} delay={i * 0.12}>
@@ -381,7 +381,7 @@ const Home = () => {
                                     viewport={{ once: true }}
                                     transition={{ delay: 0.6, type: "spring" }}
                                 >
-                                    <PiFlowerLotus className="text-brand-accent" size={10} />
+                                    <PiInfinity className="text-brand-accent" size={10} />
                                 </motion.div>
                             </div>
                         </Reveal>
@@ -472,7 +472,7 @@ const Home = () => {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: 0.6 }}
                             />
-                            <PiFlowerLotus className="text-brand-accent/40" size={12} />
+                            <PiInfinity className="text-brand-accent/40" size={12} />
                             <motion.div
                                 className="h-px bg-brand-accent/30"
                                 initial={{ width: 0 }}
@@ -582,7 +582,7 @@ const Home = () => {
                     <div className="grid md:grid-cols-3 gap-10">
                         {[
                             { icon: <GiPathDistance size={22} />, num: "01", title: "Clinical Supervision", desc: "Supportive supervision for emerging clinicians seeking licensure and professional growth." },
-                            { icon: <PiFlowerLotus size={22} />, num: "02", title: "Workshops & Training", desc: "Tailored workshops on mental health awareness, self-care practices, and trauma-informed approaches." },
+                            { icon: <PiInfinity size={22} />, num: "02", title: "Workshops & Training", desc: "Tailored workshops on mental health awareness, self-care practices, and trauma-informed approaches." },
                             { icon: <PiHandHeart size={22} />, num: "03", title: "Consultation", desc: "Professional consultation for teams building emotionally intelligent, healthy workplace cultures." },
                         ].map((s, i) => (
                             <Reveal key={s.title} delay={i * 0.12}>
@@ -633,7 +633,7 @@ const Home = () => {
                     animate={{ y: [0, -10, 0], rotate: [0, 8, 0] }}
                     transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
                 >
-                    <PiFlowerLotus size={32} />
+                    <PiInfinity size={32} />
                 </motion.div>
                 <motion.div
                     className="absolute bottom-[20%] right-[10%] text-white/5 will-animate hidden md:block"
@@ -655,7 +655,7 @@ const Home = () => {
                             animate={{ scale: [1, 1.12, 1] }}
                             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                         >
-                            <GiLotus className="text-brand-accent/60" size={32} />
+                            <PiInfinity className="text-brand-accent/60" size={32} />
                         </motion.div>
                     </motion.div>
 
@@ -756,7 +756,7 @@ const Home = () => {
                                     whileTap={{ scale: 0.99 }}
                                 >
                                     <span className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                    <PiFlowerLotus size={14} className="relative" />
+                                    <PiInfinity size={14} className="relative" />
                                     <span className="relative">Send Message</span>
                                 </motion.button>
                                 <p className="text-xs text-brand-deep/35 dark:text-cream/30 text-center">
@@ -852,7 +852,7 @@ const Home = () => {
                                 animate={{ scale: [1, 1.06, 1] }}
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                             >
-                                <PiFlowerLotus className="text-brand-accent/50" size={20} />
+                                <PiInfinity className="text-brand-accent/50" size={20} />
                             </motion.div>
                             <p className="lora text-sm tracking-[0.3em] text-brand-accent/80 mb-6">
                                 INFINITE PATHWAYS
