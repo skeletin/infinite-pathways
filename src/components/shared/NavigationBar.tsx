@@ -54,19 +54,27 @@ const NavigationBar = () => {
                     </motion.div>
                 </div>
 
+                <motion.div
+                    className="h-px bg-linear-to-r from-transparent via-brand-accent/60 to-transparent mx-auto mb-6"
+                    initial={{ width: 0 }}
+                    animate={{ width: 180 }}
+                    transition={{ duration: 1, delay: 1.1, ease: [0.25, 0.4, 0.25, 1] }}
+                />
+
                 {/* Nav links with animated underlines */}
-                <div className="flex gap-5" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                <div className="flex gap-5" >
                     {links.map(({ href, label }) => (
                         <a
                             key={label}
                             href={href}
                             onClick={(e) => handleScroll(e, href)}
-                            className="nav-link text-[0.6rem] uppercase tracking-[0.2em] text-white/70 hover:text-white transition-colors duration-300 md:text-sm"
+                            className="nav-link text-[0.55rem] uppercase tracking-[0.2em] text-white/70 hover:text-white transition-colors duration-300 md:text-sm"
                         >
                             {label}
                         </a>
                     ))}
                 </div>
+
 
                 <div className="absolute right-5 top-5"><DarkModeToggle /></div>
             </motion.nav>

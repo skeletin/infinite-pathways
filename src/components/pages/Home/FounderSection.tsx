@@ -15,7 +15,7 @@ const credentials: string[] = [
 /* ─── Component ──────────────────────────────────────────────────────── */
 
 const FounderSection = () => (
-    <section className="bg-cream-dark dark:bg-dark-surface py-24 md:py-32 px-6 transition-colors duration-300">
+    <section id="founder" className="bg-cream-dark dark:bg-dark-surface py-24 md:py-32 px-6 transition-colors duration-300">
         <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-5 gap-10 md:gap-20 items-start">
                 {/* Portrait */}

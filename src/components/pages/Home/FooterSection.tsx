@@ -1,6 +1,7 @@
 import { motion } from "motion/react"
 import { PiInfinity, PiArrowUp, PiInstagramLogo, PiFacebookLogo } from "react-icons/pi"
 import { Reveal } from "./shared"
+import skeletinLogo from "../../../../public/images/skeletin_black_logo.svg"
 
 /* ─── Props ──────────────────────────────────────────────────────────── */
 
@@ -108,6 +109,12 @@ const FooterSection = ({ onScrollToTop }: FooterSectionProps) => (
                     <p className="text-xs text-white/20">
                         &copy; {new Date().getFullYear()} Infinite Pathways. All rights reserved.
                     </p>
+                </div>
+                <div className="flex justify-center items-center gap-1 mt-8">
+                    <p className="font-thin tracking-widest text-[0.6rem] text-white">POWERED BY</p>
+                    <a href="https://skeletin.dev">
+                        <img src={skeletinLogo} className="h-3.5 hover:invert hover:drop-shadow hover:drop-shadow-black transition duration-500" alt="Powered by SKELETIN" />
+                    </a>
                 </div>
             </Reveal>
         </div>

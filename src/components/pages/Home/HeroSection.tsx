@@ -72,13 +72,6 @@ const HeroSection = ({
                 Your Journey. Your Path.
             </motion.p>
 
-            {/* Animated underline */}
-            <motion.div
-                className="h-px bg-linear-to-r from-transparent via-brand-accent/60 to-transparent mx-auto mb-6"
-                initial={{ width: 0 }}
-                animate={{ width: 180 }}
-                transition={{ duration: 1, delay: 1.1, ease: [0.25, 0.4, 0.25, 1] }}
-            />
 
             <motion.p
                 className="text-sm md:text-base tracking-widest text-white/60 max-w-lg mx-auto mb-10"
