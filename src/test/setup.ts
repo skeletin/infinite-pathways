@@ -6,10 +6,8 @@ class MockIntersectionObserver implements IntersectionObserver {
     readonly rootMargin: string = ""
     readonly thresholds: ReadonlyArray<number> = []
 
-    constructor(
-        _callback: IntersectionObserverCallback,
-        _options?: IntersectionObserverInit
-    ) {}
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    constructor(callback: IntersectionObserverCallback, options?: IntersectionObserverInit) {}
 
     observe = vi.fn()
     unobserve = vi.fn()
