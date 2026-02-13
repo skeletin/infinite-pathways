@@ -1,4 +1,4 @@
-import { motion, useInView } from "motion/react"
+import { motion, useInView, useReducedMotion } from "motion/react"
 import { useRef, type ReactNode } from "react"
 import InfinityIcon from "../../shared/InfinityIcon"
 
@@ -30,6 +30,7 @@ export interface SectionLabelProps {
 export interface SectionHeadingProps {
     children: ReactNode
     className?: string
+    id?: string
 }
 
 export interface InfinityDividerProps {
@@ -53,14 +54,15 @@ export interface HeroWordProps {
 export const Reveal = ({ children, className = "", delay = 0 }: RevealProps) => {
     const ref = useRef(null)
     const inView = useInView(ref, { once: true, margin: "-80px" })
+    const reduced = useReducedMotion()
 
     return (
         <motion.div
             ref={ref}
             className={`will-animate ${className}`}
-            initial={{ opacity: 0, y: 40 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1], delay }}
+            initial={reduced ? false : { opacity: 0, y: 40 }}
+            animate={reduced || inView ? { opacity: 1, y: 0 } : {}}
+            transition={reduced ? { duration: 0 } : { duration: 0.7, ease: [0.25, 0.4, 0.25, 1], delay }}
         >
             {children}
         </motion.div>
@@ -71,14 +73,15 @@ export const Reveal = ({ children, className = "", delay = 0 }: RevealProps) => 
 export const MaskedReveal = ({ children, className = "", delay = 0 }: MaskedRevealProps) => {
     const ref = useRef(null)
     const inView = useInView(ref, { once: true, margin: "-60px" })
+    const reduced = useReducedMotion()
 
     return (
         <div ref={ref} className={`text-reveal-mask ${className}`}>
             <motion.div
                 className="will-animate"
-                initial={{ y: "100%" }}
-                animate={inView ? { y: 0 } : {}}
-                transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay }}
+                initial={reduced ? false : { y: "100%" }}
+                animate={reduced || inView ? { y: 0 } : {}}
+                transition={reduced ? { duration: 0 } : { duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay }}
             >
                 {children}
             </motion.div>
@@ -90,16 +93,17 @@ export const MaskedReveal = ({ children, className = "", delay = 0 }: MaskedReve
 export const AnimatedIcon = ({ children, delay = 0, className = "", pulse = false }: AnimatedIconProps) => {
     const ref = useRef(null)
     const inView = useInView(ref, { once: true, margin: "-60px" })
+    const reduced = useReducedMotion()
 
     return (
         <motion.div
             ref={ref}
             className={`will-animate inline-flex ${className}`}
-            initial={{ opacity: 0, scale: 0.6, y: 10 }}
-            animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay }}
+            initial={reduced ? false : { opacity: 0, scale: 0.6, y: 10 }}
+            animate={reduced || inView ? { opacity: 1, scale: 1, y: 0 } : {}}
+            transition={reduced ? { duration: 0 } : { duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay }}
         >
-            {pulse ? (
+            {pulse && !reduced ? (
                 <motion.div
                     animate={{ scale: [1, 1.08, 1] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -118,8 +122,8 @@ export const SectionLabel = ({ children }: SectionLabelProps) => (
     </p>
 )
 
-export const SectionHeading = ({ children, className = "" }: SectionHeadingProps) => (
-    <h2 className={`text-3xl md:text-4xl font-pt-serif text-brand-deep dark:text-cream tracking-wide ${className}`}>
+export const SectionHeading = ({ children, className = "", id }: SectionHeadingProps) => (
+    <h2 id={id} className={`text-3xl md:text-4xl font-pt-serif text-brand-deep dark:text-cream tracking-wide ${className}`}>
         {children}
     </h2>
 )
@@ -167,13 +171,17 @@ export const CornerBrackets = ({ className = "" }: CornerBracketsProps) => (
 )
 
 /* ─── Staggered word reveal for hero headline ────────────────────────── */
-export const HeroWord = ({ word, delay }: HeroWordProps) => (
-    <motion.span
-        className="inline-block"
-        initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.7, delay, ease: [0.25, 0.4, 0.25, 1] }}
-    >
-        {word}
-    </motion.span>
-)
+export const HeroWord = ({ word, delay }: HeroWordProps) => {
+    const reduced = useReducedMotion()
+
+    return (
+        <motion.span
+            className="inline-block"
+            initial={reduced ? false : { opacity: 0, y: 30, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={reduced ? { duration: 0 } : { duration: 0.7, delay, ease: [0.25, 0.4, 0.25, 1] }}
+        >
+            {word}
+        </motion.span>
+    )
+}

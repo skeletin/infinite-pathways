@@ -51,12 +51,12 @@ const nextSteps: string[] = [
 /* ─── Component ──────────────────────────────────────────────────────── */
 
 const ContactSection = () => (
-    <section id="contact" className="bg-cream dark:bg-dark-bg py-24 md:py-32 px-6 transition-colors duration-300">
+    <section id="contact" aria-labelledby="contact-heading" className="bg-cream dark:bg-dark-bg py-24 md:py-32 px-6 transition-colors duration-300">
         <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
                 <Reveal><SectionLabel>Get Started</SectionLabel></Reveal>
                 <MaskedReveal delay={0.1}>
-                    <SectionHeading className="mb-4">Step Into Your Journey</SectionHeading>
+                    <SectionHeading id="contact-heading" className="mb-4">Step Into Your Journey</SectionHeading>
                 </MaskedReveal>
                 <InfinityDivider delay={0.15} />
                 <Reveal delay={0.2}>
@@ -76,25 +76,27 @@ const ContactSection = () => (
                 <Reveal delay={0.15}>
                     <div className="space-y-8">
                         {/* Contact details */}
-                        {contactDetails.map((item, i) => (
-                            <motion.div
-                                key={item.title}
-                                className="flex gap-4 items-start group"
-                                initial={{ opacity: 0, x: -10 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.2 + i * 0.1, duration: 0.5 }}
-                            >
-                                <div className="mt-0.5 text-brand-accent shrink-0 w-8 h-8 rounded-full border border-brand-accent/20 flex items-center justify-center group-hover:bg-brand-accent/5 transition-colors duration-300">
-                                    {item.icon}
-                                </div>
-                                <div>
-                                    <h3 className="text-sm font-pt-serif text-brand-deep dark:text-cream tracking-wide mb-1">{item.title}</h3>
-                                    <p className="text-brand-deep/70 dark:text-cream/65">{item.main}</p>
-                                    <p className="text-xs text-brand-deep/40 dark:text-cream/35 mt-1">{item.sub}</p>
-                                </div>
-                            </motion.div>
-                        ))}
+                        <address className="not-italic space-y-8">
+                            {contactDetails.map((item, i) => (
+                                <motion.div
+                                    key={item.title}
+                                    className="flex gap-4 items-start group"
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.2 + i * 0.1, duration: 0.5 }}
+                                >
+                                    <div className="mt-0.5 text-brand-accent shrink-0 w-8 h-8 rounded-full border border-brand-accent/20 flex items-center justify-center group-hover:bg-brand-accent/5 transition-colors duration-300" aria-hidden="true">
+                                        {item.icon}
+                                    </div>
+                                    <div>
+                                        <h3 className="text-sm font-pt-serif text-brand-deep dark:text-cream tracking-wide mb-1">{item.title}</h3>
+                                        <p className="text-brand-deep/70 dark:text-cream/65">{item.main}</p>
+                                        <p className="text-xs text-brand-deep/40 dark:text-cream/35 mt-1">{item.sub}</p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </address>
 
                         {/* What happens next */}
                         <div className="pt-6 border-t border-sage dark:border-brand-accent/15">
@@ -124,20 +126,21 @@ const ContactSection = () => (
                             transition={{ delay: 0.5, duration: 0.5 }}
                         >
                             <h3 className="text-sm font-pt-serif text-brand-deep dark:text-cream tracking-wide mb-4">Connect with me</h3>
-                            <div className="flex gap-3">
+                            <ul className="flex gap-3 list-none p-0 m-0">
                                 {socialLinks.map((link) => (
-                                    <a
-                                        key={link.label}
-                                        href={link.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="w-10 h-10 rounded-full border border-brand-accent/20 flex items-center justify-center text-brand-accent hover:bg-brand-accent/10 transition-colors duration-300"
-                                        aria-label={link.label}
-                                    >
-                                        {link.icon}
-                                    </a>
+                                    <li key={link.label}>
+                                        <a
+                                            href={link.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-10 h-10 rounded-full border border-brand-accent/20 flex items-center justify-center text-brand-accent hover:bg-brand-accent/10 transition-colors duration-300"
+                                            aria-label={link.label}
+                                        >
+                                            {link.icon}
+                                        </a>
+                                    </li>
                                 ))}
-                            </div>
+                            </ul>
                         </motion.div>
                     </div>
                 </Reveal>

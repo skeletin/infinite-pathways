@@ -2,9 +2,54 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/images/infinite-pathways.svg"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Infinite Pathways is the practice of De'Ayne Scaife, a Licensed Clinical Social Worker serving clients across Illinois and Indiana. Offering individual therapy, grief and loss support, and life transitions counseling, Infinite Pathways provides compassionate, personalized care rooted in the belief that healing is not linear and every path is unique. Professional services include workshops, trainings, and consultations for teams and organizations. Whether you are navigating anxiety, processing loss, facing a major life change, or seeking professional development, Infinite Pathways meets you where you are and helps you move forward with clarity and confidence."
+    />
+    <!-- Open Graph (social sharing) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Infinite Pathways" />
+    <meta
+      property="og:title"
+      content="Infinite Pathways | Healing without Limits"
+    />
+    <meta
+      property="og:description"
+      content="Infinite Pathways is the practice of De'Ayne Scaife, a Licensed Clinical Social Worker serving clients across Illinois and Indiana. Offering individual therapy, grief and loss support, and life transitions counseling, Infinite Pathways provides compassionate, personalized care rooted in the belief that healing is not linear and every path is unique."
+    />
+    <meta
+      property="og:image"
+      content="https://myinfinitepathways.com/preview.png"
+    />
+    <meta property="og:url" content="https://myinfinitepathways.com" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Infinite Pathways | Healing without Limits"
+    />
+    <meta
+      name="twitter:description"
+      content="Therapy and professional services by De'Ayne Scaife, LCSW. Individual therapy, grief support, life transitions, workshops, and consultations across Illinois and Indiana."
+    />
+    <meta
+      name="twitter:image"
+      content="https://myinfinitepathways.com/preview.png"
+    />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://myinfinitepathways.com" />
     <title>Infinite Pathways | Healing without Limits</title>
+
+    <!-- Preload hero background for faster LCP -->
+    <link rel="preload" as="image" href="/images/infinite-pathways-bg.webp" type="image/webp" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,8 +68,97 @@
         document.documentElement.classList.add("dark");
       }
     </script>
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Infinite Pathways",
+        "description": "Therapy and professional services by De'Ayne Scaife, a Licensed Clinical Social Worker serving clients across Illinois and Indiana.",
+        "url": "https://myinfinitepathways.com",
+        "image": "https://myinfinitepathways.com/preview.png",
+        "telephone": "(847) 859-9258",
+        "email": "Dscaife@myinfinitepathways.com",
+        "areaServed": [
+          {
+            "@type": "State",
+            "name": "Illinois"
+          },
+          {
+            "@type": "State",
+            "name": "Indiana"
+          }
+        ],
+        "founder": {
+          "@type": "Person",
+          "name": "De'Ayne Scaife",
+          "jobTitle": "Licensed Clinical Social Worker",
+          "sameAs": [
+            "https://www.instagram.com/myinfinitepathways",
+            "https://www.facebook.com/share/16ypXiy4cL/"
+          ]
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Individual Therapy",
+                "description": "Personalized one-on-one sessions to help navigate anxiety, self-doubt, and life's challenges."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Grief & Loss Support",
+                "description": "Compassionate guidance through the pain of losing a loved one or pet."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Life Transitions Counseling",
+                "description": "Support through change, uncertainty, and new beginnings."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Workshops & Trainings",
+                "description": "Interactive sessions designed to foster growth, resilience, and effective communication for teams and organizations."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Consultations",
+                "description": "Strategic guidance for individuals or organizations seeking clarity, problem-solving, or growth strategies."
+              }
+            }
+          ]
+        },
+        "sameAs": [
+          "https://www.instagram.com/myinfinitepathways",
+          "https://www.facebook.com/share/16ypXiy4cL/"
+        ]
+      }
+    </script>
   </head>
   <body>
+    <!-- Skip to content link for accessibility and SEO -->
+    <a
+      href="#hero"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2 focus:bg-brand-accent focus:text-white focus:rounded-sm focus:text-sm"
+    >
+      Skip to main content
+    </a>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

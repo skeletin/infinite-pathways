@@ -4,7 +4,7 @@ import { Reveal, MaskedReveal, AnimatedIcon, SectionLabel, SectionHeading } from
 
 /* ─── Data ───────────────────────────────────────────────────────────── */
 
-const PROFILE_PHOTO = "/images/me.jpg"
+const PROFILE_PHOTO = "/images/me.webp"
 
 const credentials: string[] = [
     "Licensed Clinical Social Worker in Illinois and Indiana",
@@ -15,16 +15,17 @@ const credentials: string[] = [
 /* ─── Component ──────────────────────────────────────────────────────── */
 
 const FounderSection = () => (
-    <section id="founder" className="bg-cream-dark dark:bg-dark-surface py-24 md:py-32 px-6 transition-colors duration-300">
+    <section id="founder" aria-labelledby="founder-heading" className="bg-cream-dark dark:bg-dark-surface py-24 md:py-32 px-6 transition-colors duration-300">
         <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-5 gap-10 md:gap-20 items-start">
                 {/* Portrait */}
                 <Reveal className="md:col-span-2 flex justify-center">
-                    <div className="relative w-36 h-36 md:w-72 md:h-72 shrink-0">
+                    <figure className="relative w-36 h-36 md:w-72 md:h-72 shrink-0">
                         <div className="w-full h-full rounded-full overflow-hidden bg-brand-primary/10 dark:bg-brand-primary/20 relative z-10">
                             <motion.img
                                 src={PROFILE_PHOTO}
-                                alt="Founder portrait"
+                                alt="De'Ayne Scaife, Licensed Clinical Social Worker"
+                                loading="lazy"
                                 className="w-full h-full object-cover"
                                 whileInView={{ scale: [1.15, 1] }}
                                 viewport={{ once: true }}
@@ -54,7 +55,7 @@ const FounderSection = () => (
                         >
                             <InfinityIcon className="text-brand-accent" size={10} />
                         </motion.div>
-                    </div>
+                    </figure>
                 </Reveal>
 
                 {/* Story */}
@@ -63,7 +64,7 @@ const FounderSection = () => (
                         <SectionLabel>Meet the Founder</SectionLabel>
                     </Reveal>
                     <MaskedReveal delay={0.1}>
-                        <SectionHeading>De'Ayne Scaife, LCSW</SectionHeading>
+                        <SectionHeading id="founder-heading">De'Ayne Scaife, LCSW</SectionHeading>
                     </MaskedReveal>
                     <Reveal delay={0.15}>
                         <div className="flex items-center gap-3 my-6 justify-center md:justify-start">
@@ -88,9 +89,9 @@ const FounderSection = () => (
                         </p>
                     </Reveal>
                     <Reveal delay={0.3}>
-                        <div className="pt-8 flex flex-col gap-3 text-sm text-brand-deep/50 dark:text-cream/40">
+                        <ul className="pt-8 flex flex-col gap-3 text-sm text-brand-deep/50 dark:text-cream/40 list-none p-0 m-0">
                             {credentials.map((cred, i) => (
-                                <motion.div
+                                <motion.li
                                     key={cred}
                                     className="flex items-center gap-3 justify-center md:justify-start"
                                     initial={{ opacity: 0, x: -10 }}
@@ -104,11 +105,12 @@ const FounderSection = () => (
                                         whileInView={{ scale: 1 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: 0.45 + i * 0.1, type: "spring" }}
+                                        aria-hidden="true"
                                     />
-                                    <p>{cred}</p>
-                                </motion.div>
+                                    <span>{cred}</span>
+                                </motion.li>
                             ))}
-                        </div>
+                        </ul>
                     </Reveal>
                 </div>
             </div>
