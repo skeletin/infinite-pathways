@@ -1,5 +1,5 @@
 import { motion } from "motion/react"
-import { PiInfinity } from "react-icons/pi"
+import InfinityIcon from "../../shared/InfinityIcon"
 import { Reveal, MaskedReveal, AnimatedIcon, SectionLabel, SectionHeading } from "./shared"
 
 /* ─── Data ───────────────────────────────────────────────────────────── */
@@ -52,7 +52,7 @@ const FounderSection = () => (
                             viewport={{ once: true }}
                             transition={{ delay: 0.6, type: "spring" }}
                         >
-                            <PiInfinity className="text-brand-accent" size={10} />
+                            <InfinityIcon className="text-brand-accent" size={10} />
                         </motion.div>
                     </div>
                 </Reveal>
@@ -63,13 +63,13 @@ const FounderSection = () => (
                         <SectionLabel>Meet the Founder</SectionLabel>
                     </Reveal>
                     <MaskedReveal delay={0.1}>
-                        <SectionHeading>My Story</SectionHeading>
+                        <SectionHeading>De'Ayne Scaife, LCSW</SectionHeading>
                     </MaskedReveal>
                     <Reveal delay={0.15}>
                         <div className="flex items-center gap-3 my-6 justify-center md:justify-start">
                             <div className="w-10 h-px bg-linear-to-r from-brand-accent/40 to-transparent" />
                             <AnimatedIcon delay={0.2}>
-                                <PiInfinity className="text-brand-accent/50" size={14} />
+                                <InfinityIcon className="text-brand-accent/50" size={14} />
                             </AnimatedIcon>
                         </div>
                     </Reveal>

@@ -1,5 +1,5 @@
 import { motion } from "motion/react"
-import { PiInfinity, PiArrowUp, PiInstagramLogo, PiFacebookLogo } from "react-icons/pi"
+import { PiArrowUp, PiInstagramLogo, PiFacebookLogo } from "react-icons/pi"
 import { Reveal } from "./shared"
 import skeletinLogo from "../../../../public/images/skeletin_black_logo.svg"
 
@@ -49,16 +49,13 @@ const FooterSection = ({ onScrollToTop }: FooterSectionProps) => (
         <div className="max-w-4xl mx-auto">
             <Reveal>
                 <div className="text-center">
-                    <motion.div
-                        className="flex justify-center mb-4"
-                        animate={{ scale: [1, 1.06, 1] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                        <PiInfinity className="text-brand-accent/50" size={20} />
-                    </motion.div>
-                    <p className="text-sm uppercase tracking-[0.3em] text-brand-accent/80 font-pt-serif mb-6">
-                        Infinite Pathways
-                    </p>
+                    <div className="flex justify-center mb-6">
+                        <img
+                            src="/images/infinite-pathways_brand-logo.svg"
+                            alt="Infinite Pathways"
+                            className="h-5 invert opacity-50"
+                        />
+                    </div>
 
                     <div className="flex justify-center gap-6 mb-6" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
                         {navLinks.map(({ label, href }) => (

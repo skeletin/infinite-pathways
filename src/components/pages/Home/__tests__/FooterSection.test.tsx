@@ -3,9 +3,9 @@ import userEvent from "@testing-library/user-event"
 import FooterSection from "../FooterSection"
 
 describe("FooterSection", () => {
-    it("renders the brand name", () => {
+    it("renders the brand logo", () => {
         render(<FooterSection onScrollToTop={vi.fn()} />)
-        expect(screen.getByText("Infinite Pathways")).toBeInTheDocument()
+        expect(screen.getByAltText("Infinite Pathways")).toBeInTheDocument()
     })
 
     it("renders all navigation links", () => {

@@ -9,7 +9,7 @@ describe("FounderSection", () => {
 
     it("renders the section heading", () => {
         render(<FounderSection />)
-        expect(screen.getByRole("heading", { name: /my story/i })).toBeInTheDocument()
+        expect(screen.getByRole("heading", { name: /De'Ayne Scaife, LCSW/i })).toBeInTheDocument()
     })
 
     it("renders the founder portrait image", () => {

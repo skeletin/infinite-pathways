@@ -45,13 +45,13 @@ const NavigationBar = () => {
 
                 {/* Logo + dark mode toggle */}
                 <div className="flex items-center gap-3 mb-3">
-                    <motion.div
-                        className="lora tracking-[0.3em] text-white"
+                    <motion.img
+                        src="/images/infinite-pathways_brand-logo.svg"
+                        alt="Infinite Pathways"
+                        className="invert"
                         animate={{ height: scrolled ? 18 : 24 }}
                         transition={{ duration: 0.3 }}
-                    >
-                        INFINITE PATHWAYS
-                    </motion.div>
+                    />
                 </div>
 
                 <motion.div

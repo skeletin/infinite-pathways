@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "motion/react"
 import { useRef, useState, type FormEvent } from "react"
 import emailjs from "@emailjs/browser"
-import { PiInfinity } from "react-icons/pi"
+import InfinityIcon from "../../shared/InfinityIcon"
 
 /* ─── Styles ─────────────────────────────────────────────────────────── */
 
@@ -141,7 +141,7 @@ const ContactForm = () => {
                 whileTap={{ scale: 0.99 }}
             >
                 <span className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <PiInfinity size={14} className="relative" />
+                <InfinityIcon size={14} className="relative" />
                 <span className="relative">{sending ? "Sending..." : "Send Message"}</span>
             </motion.button>
 

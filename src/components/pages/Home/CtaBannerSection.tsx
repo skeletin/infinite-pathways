@@ -1,5 +1,5 @@
 import { motion } from "motion/react"
-import { PiInfinity } from "react-icons/pi"
+import InfinityIcon from "../../shared/InfinityIcon"
 import { Reveal, MaskedReveal } from "./shared"
 
 /* ─── Props ──────────────────────────────────────────────────────────── */
@@ -27,7 +27,7 @@ const CtaBannerSection = ({ onScrollToContact }: CtaBannerSectionProps) => (
                     animate={{ scale: [1, 1.12, 1] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 >
-                    <PiInfinity className="text-brand-accent/60" size={32} />
+                    <InfinityIcon className="text-brand-accent/60" size={32} />
                 </motion.div>
             </motion.div>
 

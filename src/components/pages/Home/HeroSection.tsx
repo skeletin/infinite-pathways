@@ -1,7 +1,7 @@
 import { motion } from "motion/react"
 import type { MotionValue } from "motion/react"
 import type { RefObject } from "react"
-import { PiInfinity, PiArrowDown } from "react-icons/pi"
+import { PiArrowDown } from "react-icons/pi"
 import { HeroWord, CurveDivider } from "./shared"
 
 /* ─── Props ──────────────────────────────────────────────────────────── */
@@ -45,12 +45,7 @@ const HeroSection = ({
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
             >
-                <motion.div
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                >
-                    <PiInfinity className="text-brand-accent/70" size={36} />
-                </motion.div>
+
             </motion.div>
 
             {/* Staggered headline */}

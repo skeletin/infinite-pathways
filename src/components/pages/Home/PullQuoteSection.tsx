@@ -1,5 +1,6 @@
 import { motion } from "motion/react"
-import { PiQuotes, PiInfinity } from "react-icons/pi"
+import { PiQuotes } from "react-icons/pi"
+import InfinityIcon from "../../shared/InfinityIcon"
 import { Reveal, MaskedReveal } from "./shared"
 
 /* ─── Data ───────────────────────────────────────────────────────────── */
@@ -30,7 +31,7 @@ const PullQuoteSection = () => (
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.6 }}
                     />
-                    <PiInfinity className="text-brand-accent/40" size={12} />
+                    <InfinityIcon className="text-brand-accent/40" size={12} />
                     <motion.div
                         className="h-px bg-brand-accent/30"
                         initial={{ width: 0 }}

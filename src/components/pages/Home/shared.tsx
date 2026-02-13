@@ -1,6 +1,6 @@
 import { motion, useInView } from "motion/react"
 import { useRef, type ReactNode } from "react"
-import { PiInfinity } from "react-icons/pi"
+import InfinityIcon from "../../shared/InfinityIcon"
 
 /* ─── Prop Types ────────────────────────────────────────────────────────── */
 
@@ -135,7 +135,7 @@ export const InfinityDivider = ({ delay = 0 }: InfinityDividerProps) => (
             transition={{ duration: 0.6, delay }}
         />
         <AnimatedIcon delay={delay + 0.1} pulse>
-            <PiInfinity className="text-brand-accent/50 text-lg" />
+            <InfinityIcon className="text-brand-accent/50" size={18} />
         </AnimatedIcon>
         <motion.div
             className="w-16 h-px bg-linear-to-l from-transparent to-brand-accent/30"

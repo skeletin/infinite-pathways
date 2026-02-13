@@ -1,5 +1,6 @@
 import { motion } from "motion/react"
-import { PiInfinity, PiArrowLeft } from "react-icons/pi"
+import { PiArrowLeft } from "react-icons/pi"
+import InfinityIcon from "../../shared/InfinityIcon"
 import { useNavigate } from "react-router"
 
 const NotFound = () => {
@@ -28,7 +29,7 @@ const NotFound = () => {
                 >
                     <motion.div
                     >
-                        <PiInfinity className="text-brand-accent/40" size={80} />
+                        <InfinityIcon className="text-brand-accent/40" size={80} />
                     </motion.div>
                 </motion.div>
 
