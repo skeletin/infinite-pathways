@@ -10,18 +10,23 @@ const QUOTE_TEXT = "Healing isn't linear, and your path doesn't have to look lik
 /* ─── Component ──────────────────────────────────────────────────────── */
 
 const PullQuoteSection = () => (
-    <section className="bg-cream dark:bg-dark-bg py-20 px-6 transition-colors duration-300">
+    <section aria-label="Quote" className="bg-cream dark:bg-dark-bg py-20 px-6 transition-colors duration-300">
         <div className="max-w-2xl mx-auto text-center">
             <Reveal>
-                <PiQuotes className="text-brand-accent/25 mx-auto mb-4" size={32} />
+                <PiQuotes className="text-brand-accent/25 mx-auto mb-4" size={32} aria-hidden="true" />
             </Reveal>
-            <blockquote className="text-2xl md:text-3xl font-pt-serif text-brand-deep/80 dark:text-cream/75 leading-snug italic">
-                {QUOTE_TEXT.split(" ").map((word, i) => (
-                    <MaskedReveal key={i} className="inline-block mr-[0.3em]" delay={i * 0.05}>
-                        <span>{word}</span>
-                    </MaskedReveal>
-                ))}
-            </blockquote>
+            <figure>
+                <blockquote className="text-2xl md:text-3xl font-pt-serif text-brand-deep/80 dark:text-cream/75 leading-snug italic">
+                    {QUOTE_TEXT.split(" ").map((word, i) => (
+                        <MaskedReveal key={i} className="inline-block mr-[0.3em]" delay={i * 0.05}>
+                            <span>{word}</span>
+                        </MaskedReveal>
+                    ))}
+                </blockquote>
+                <figcaption className="sr-only">
+                    <cite>De'Ayne Scaife, LCSW</cite>
+                </figcaption>
+            </figure>
             <Reveal delay={0.5}>
                 <div className="flex items-center justify-center gap-3 mt-6">
                     <motion.div

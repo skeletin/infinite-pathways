@@ -19,16 +19,18 @@ const NavigationBar = () => {
     }
 
     return (
-        <>
+        <header>
             {/* Scroll progress bar */}
             <motion.div
                 className="fixed top-0 left-0 right-0 h-[2px] bg-brand-accent/70 origin-left z-50"
                 style={{ scaleX: scrollYProgress }}
+                aria-hidden="true"
             />
 
 
             {/* Nav — transparent over hero, sticky with blur after scrolling */}
             <motion.nav
+                aria-label="Main navigation"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -78,7 +80,7 @@ const NavigationBar = () => {
 
                 <div className="absolute right-5 top-5"><DarkModeToggle /></div>
             </motion.nav>
-        </>
+        </header>
     )
 }
 

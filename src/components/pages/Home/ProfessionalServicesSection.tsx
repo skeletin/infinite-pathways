@@ -37,12 +37,12 @@ const services: ProfessionalService[] = [
 /* ─── Component ──────────────────────────────────────────────────────── */
 
 const ProfessionalServicesSection = () => (
-    <section id="professional" className="bg-cream dark:bg-dark-bg py-24 md:py-32 px-6 transition-colors duration-300">
+    <section id="professional" aria-labelledby="professional-services-heading" className="bg-cream dark:bg-dark-bg py-24 md:py-32 px-6 transition-colors duration-300">
         <div className="max-w-4xl mx-auto">
             <div className="text-center mb-20">
                 <Reveal><SectionLabel>Professional Services</SectionLabel></Reveal>
                 <MaskedReveal delay={0.1}>
-                    <SectionHeading className="mb-4">Beyond the Therapy Room</SectionHeading>
+                    <SectionHeading id="professional-services-heading" className="mb-4">Beyond the Therapy Room</SectionHeading>
                 </MaskedReveal>
                 <InfinityDivider delay={0.15} />
                 <Reveal delay={0.2}>
@@ -56,7 +56,7 @@ const ProfessionalServicesSection = () => (
             <div className="grid md:grid-cols-2 gap-10">
                 {services.map((s, i) => (
                     <Reveal key={s.title} delay={i * 0.12}>
-                        <motion.div
+                        <motion.article
                             className="relative"
                             whileHover={{ y: -4 }}
                             transition={{ duration: 0.3 }}
@@ -84,7 +84,7 @@ const ProfessionalServicesSection = () => (
                                 <h3 className="text-lg font-pt-serif text-brand-deep dark:text-cream tracking-wide mb-4">{s.title}</h3>
                             </MaskedReveal>
                             <p className="text-brand-deep/65 dark:text-cream/55 leading-relaxed text-sm">{s.desc}</p>
-                        </motion.div>
+                        </motion.article>
                     </Reveal>
                 ))}
             </div>

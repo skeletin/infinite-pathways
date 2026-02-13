@@ -1,7 +1,7 @@
 import { motion } from "motion/react"
 import { PiArrowUp, PiInstagramLogo, PiFacebookLogo } from "react-icons/pi"
 import { Reveal } from "./shared"
-import skeletinLogo from "../../../../public/images/skeletin_black_logo.svg"
+const skeletinLogo = "/images/skeletin_black_logo.svg"
 
 /* ─── Props ──────────────────────────────────────────────────────────── */
 
@@ -57,37 +57,41 @@ const FooterSection = ({ onScrollToTop }: FooterSectionProps) => (
                         />
                     </div>
 
-                    <div className="flex justify-center gap-6 mb-6" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-                        {navLinks.map(({ label, href }) => (
-                            <a
-                                key={label}
-                                href={href}
-                                onClick={(e) => {
-                                    e.preventDefault()
-                                    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" })
-                                }}
-                                className="nav-link text-xs text-white/35 hover:text-white/60 transition-colors duration-300 tracking-wide"
-                            >
-                                {label}
-                            </a>
-                        ))}
-                    </div>
+                    <nav aria-label="Footer navigation" className="mb-6">
+                        <ul className="flex justify-center gap-6 list-none p-0 m-0" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                            {navLinks.map(({ label, href }) => (
+                                <li key={label}>
+                                    <a
+                                        href={href}
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            document.querySelector(href)?.scrollIntoView({ behavior: "smooth" })
+                                        }}
+                                        className="nav-link text-xs text-white/35 hover:text-white/60 transition-colors duration-300 tracking-wide"
+                                    >
+                                        {label}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
 
                     {/* Social icons */}
-                    <div className="flex justify-center gap-3 mb-6">
+                    <ul className="flex justify-center gap-3 mb-6 list-none p-0 m-0">
                         {socialLinks.map((link) => (
-                            <a
-                                key={link.label}
-                                href={link.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/40 hover:text-brand-accent hover:border-brand-accent/30 transition-colors duration-300"
-                                aria-label={link.label}
-                            >
-                                {link.icon}
-                            </a>
+                            <li key={link.label}>
+                                <a
+                                    href={link.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/40 hover:text-brand-accent hover:border-brand-accent/30 transition-colors duration-300"
+                                    aria-label={link.label}
+                                >
+                                    {link.icon}
+                                </a>
+                            </li>
                         ))}
-                    </div>
+                    </ul>
 
                     <motion.div
                         className="h-px bg-brand-accent/20 mx-auto mb-6"
@@ -97,9 +101,9 @@ const FooterSection = ({ onScrollToTop }: FooterSectionProps) => (
                         transition={{ duration: 0.5 }}
                     />
 
-                    <p className="text-xs text-white/30 mb-1">
+                    <address className="not-italic text-xs text-white/30 mb-1">
                         Dscaife@myinfinitepathways.com &middot; (847) 859-9258
-                    </p>
+                    </address>
                     <p className="text-xs text-white/30 mb-4">
                         Licensed Clinical Social Worker &middot; Illinois &amp; Indiana
                     </p>
@@ -109,8 +113,8 @@ const FooterSection = ({ onScrollToTop }: FooterSectionProps) => (
                 </div>
                 <div className="flex justify-center items-center gap-1 mt-8">
                     <p className="font-thin tracking-widest text-[0.6rem] text-white">POWERED BY</p>
-                    <a href="https://skeletin.dev">
-                        <img src={skeletinLogo} className="h-3.5 hover:invert hover:drop-shadow hover:drop-shadow-black transition duration-500" alt="Powered by SKELETIN" />
+                    <a href="https://skeletin.dev" target="_blank" rel="noopener noreferrer">
+                        <img src={skeletinLogo} loading="lazy" className="h-3.5 hover:invert hover:drop-shadow hover:drop-shadow-black transition duration-500" alt="Powered by SKELETIN" />
                     </a>
                 </div>
             </Reveal>
@@ -119,6 +123,7 @@ const FooterSection = ({ onScrollToTop }: FooterSectionProps) => (
         {/* Back to top */}
         <motion.button
             onClick={onScrollToTop}
+            aria-label="Back to top"
             className="absolute right-6 bottom-6 w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/30 hover:text-white/60 hover:border-white/30 transition-colors duration-300 cursor-pointer"
             whileHover={{ y: -3 }}
         >

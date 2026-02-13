@@ -14,9 +14,9 @@ describe("FounderSection", () => {
 
     it("renders the founder portrait image", () => {
         render(<FounderSection />)
-        const img = screen.getByAltText("Founder portrait")
+        const img = screen.getByAltText("De'Ayne Scaife, Licensed Clinical Social Worker")
         expect(img).toBeInTheDocument()
-        expect(img).toHaveAttribute("src", "/images/me.jpg")
+        expect(img).toHaveAttribute("src", "/images/me.webp")
     })
 
     it("renders the founder story paragraphs", () => {

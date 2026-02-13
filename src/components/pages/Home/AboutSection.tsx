@@ -47,13 +47,13 @@ const coreValues: CoreValue[] = [
 /* ─── Component ──────────────────────────────────────────────────────── */
 
 const AboutSection = ({ aboutRef, aboutParallax }: AboutSectionProps) => (
-    <section ref={aboutRef} id="about" className="bg-cream dark:bg-dark-bg py-24 md:py-32 px-6 transition-colors duration-300">
+    <section ref={aboutRef} id="about" aria-labelledby="about-heading" className="bg-cream dark:bg-dark-bg py-24 md:py-32 px-6 transition-colors duration-300">
         <motion.div className="max-w-3xl mx-auto text-center" style={{ y: aboutParallax }}>
             <Reveal>
                 <SectionLabel>About the Practice</SectionLabel>
             </Reveal>
             <MaskedReveal delay={0.1}>
-                <SectionHeading>Infinite Pathways</SectionHeading>
+                <SectionHeading id="about-heading">Infinite Pathways</SectionHeading>
             </MaskedReveal>
             <InfinityDivider delay={0.15} />
             <Reveal delay={0.2}>

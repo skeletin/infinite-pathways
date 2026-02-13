@@ -17,6 +17,7 @@ const NotFound = () => {
                 style={{ background: "radial-gradient(circle, rgba(168,131,88,0.08) 0%, transparent 65%)" }}
                 animate={{ scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                aria-hidden="true"
             />
 
             <div className="relative z-10 text-center max-w-lg">
@@ -107,24 +108,28 @@ const NotFound = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 0.5 }}
+                    aria-hidden="true"
                 />
                 <motion.div
                     className="absolute top-8 right-8 w-12 h-12 border-r border-t border-brand-accent/15 hidden md:block"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 0.6 }}
+                    aria-hidden="true"
                 />
                 <motion.div
                     className="absolute bottom-8 left-8 w-12 h-12 border-l border-b border-brand-accent/15 hidden md:block"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 0.7 }}
+                    aria-hidden="true"
                 />
                 <motion.div
                     className="absolute bottom-8 right-8 w-12 h-12 border-r border-b border-brand-accent/15 hidden md:block"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 0.8 }}
+                    aria-hidden="true"
                 />
             </div>
         </section>

@@ -64,15 +64,17 @@ const ContactForm = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1, duration: 0.5 }}
             >
-                <label className="block text-sm text-brand-deep/55 dark:text-cream/50 mb-2 tracking-wide">Your name</label>
+                <label htmlFor="from_name" className="block text-sm text-brand-deep/55 dark:text-cream/50 mb-2 tracking-wide">Your name</label>
                 <input
+                    id="from_name"
                     type="text"
                     name="from_name"
                     placeholder="Jane Smith"
+                    autoComplete="name"
                     className={`${INPUT_CLASS} ${errors.from_name ? "border-red-400! dark:border-red-400/60!" : ""}`}
                     onChange={() => errors.from_name && setErrors(prev => ({ ...prev, from_name: false }))}
                 />
-                {errors.from_name && <p className="text-xs text-red-500 dark:text-red-400 mt-1">Please enter your name.</p>}
+                {errors.from_name && <p role="alert" className="text-xs text-red-500 dark:text-red-400 mt-1">Please enter your name.</p>}
             </motion.div>
 
             {/* Email */}
@@ -82,15 +84,17 @@ const ContactForm = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.5 }}
             >
-                <label className="block text-sm text-brand-deep/55 dark:text-cream/50 mb-2 tracking-wide">Email address</label>
+                <label htmlFor="from_email" className="block text-sm text-brand-deep/55 dark:text-cream/50 mb-2 tracking-wide">Email address</label>
                 <input
+                    id="from_email"
                     type="email"
                     name="from_email"
                     placeholder="jane@example.com"
+                    autoComplete="email"
                     className={`${INPUT_CLASS} ${errors.from_email ? "border-red-400! dark:border-red-400/60!" : ""}`}
                     onChange={() => errors.from_email && setErrors(prev => ({ ...prev, from_email: false }))}
                 />
-                {errors.from_email && <p className="text-xs text-red-500 dark:text-red-400 mt-1">Please enter a valid email address.</p>}
+                {errors.from_email && <p role="alert" className="text-xs text-red-500 dark:text-red-400 mt-1">Please enter a valid email address.</p>}
             </motion.div>
 
             {/* Service type dropdown */}
@@ -100,8 +104,9 @@ const ContactForm = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3, duration: 0.5 }}
             >
-                <label className="block text-sm text-brand-deep/55 dark:text-cream/50 mb-2 tracking-wide">I'm interested in</label>
+                <label htmlFor="service_type" className="block text-sm text-brand-deep/55 dark:text-cream/50 mb-2 tracking-wide">I'm interested in</label>
                 <select
+                    id="service_type"
                     name="service_type"
                     defaultValue=""
                     className={`${INPUT_CLASS} appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%23a88358%22%20d%3D%22M6%208L1%203h10z%22%2F%3E%3C%2Fsvg%3E')] bg-size-[12px] bg-position-[right_16px_center] bg-no-repeat pr-10 ${errors.service_type ? "border-red-400! dark:border-red-400/60!" : ""}`}
@@ -111,7 +116,7 @@ const ContactForm = () => {
                     <option value="Clinical Services">Clinical Services</option>
                     <option value="Professional Services">Professional Services</option>
                 </select>
-                {errors.service_type && <p className="text-xs text-red-500 dark:text-red-400 mt-1">Please select a service type.</p>}
+                {errors.service_type && <p role="alert" className="text-xs text-red-500 dark:text-red-400 mt-1">Please select a service type.</p>}
             </motion.div>
 
             {/* Message */}
@@ -121,15 +126,16 @@ const ContactForm = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.5 }}
             >
-                <label className="block text-sm text-brand-deep/55 dark:text-cream/50 mb-2 tracking-wide">How can I help?</label>
+                <label htmlFor="message" className="block text-sm text-brand-deep/55 dark:text-cream/50 mb-2 tracking-wide">How can I help?</label>
                 <textarea
+                    id="message"
                     rows={4}
                     name="message"
                     placeholder="Share a bit about what brings you here..."
                     className={`${INPUT_CLASS} resize-none ${errors.message ? "border-red-400! dark:border-red-400/60!" : ""}`}
                     onChange={() => errors.message && setErrors(prev => ({ ...prev, message: false }))}
                 />
-                {errors.message && <p className="text-xs text-red-500 dark:text-red-400 mt-1">Please share a brief message.</p>}
+                {errors.message && <p role="alert" className="text-xs text-red-500 dark:text-red-400 mt-1">Please share a brief message.</p>}
             </motion.div>
 
             {/* Submit */}
@@ -150,6 +156,8 @@ const ContactForm = () => {
                 {status === "success" && (
                     <motion.div
                         key="success"
+                        role="status"
+                        aria-live="polite"
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -8 }}
@@ -163,6 +171,8 @@ const ContactForm = () => {
                 {status === "error" && (
                     <motion.div
                         key="error"
+                        role="alert"
+                        aria-live="assertive"
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -8 }}
