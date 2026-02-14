@@ -46,14 +46,16 @@ const NavigationBar = () => {
             >
 
                 {/* Logo + dark mode toggle */}
-                <div className="flex items-center gap-3 mb-3">
-                    <motion.img
+                <div className="flex items-center justify-center w-full mb-3 relative">
+                    <div className="w-6 shrink-0" aria-hidden="true" />
+                    <img
                         src="/images/infinite-pathways_brand-logo.svg"
                         alt="Infinite Pathways"
-                        className="invert"
-                        animate={{ height: scrolled ? 18 : 24 }}
-                        transition={{ duration: 0.3 }}
+                        className="invert mx-auto h-5 md:h-[18px]"
                     />
+                    <div className="shrink-0">
+                        <DarkModeToggle />
+                    </div>
                 </div>
 
                 <motion.div
@@ -77,8 +79,6 @@ const NavigationBar = () => {
                     ))}
                 </div>
 
-
-                <div className="absolute right-5 top-5"><DarkModeToggle /></div>
             </motion.nav>
         </header>
     )
